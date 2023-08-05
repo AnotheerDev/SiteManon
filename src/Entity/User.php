@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -34,6 +36,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Post::class)]
+    private Collection $creatPost;
+
+    public function __construct()
+    {
+        $this->creatPost = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -125,6 +135,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): static
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Post>
+     */
+    public function getCreatPost(): Collection
+    {
+        return $this->creatPost;
+    }
+
+    public function addCreatPost(Post $creatPost): static
+    {
+        if (!$this->creatPost->contains($creatPost)) {
+            $this->creatPost->add($creatPost);
+            $creatPost->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCreatPost(Post $creatPost): static
+    {
+        if ($this->creatPost->removeElement($creatPost)) {
+            // set the owning side to null (unless already changed)
+            if ($creatPost->getUser() === $this) {
+                $creatPost->setUser(null);
+            }
+        }
 
         return $this;
     }
