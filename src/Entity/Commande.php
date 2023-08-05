@@ -29,6 +29,9 @@ class Commande
     #[ORM\Column]
     private ?int $reference = null;
 
+    #[ORM\ManyToOne(inversedBy: 'commander')]
+    private ?User $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +93,18 @@ class Commande
     public function setReference(int $reference): static
     {
         $this->reference = $reference;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

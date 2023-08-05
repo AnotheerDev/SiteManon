@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ArticleRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -25,6 +27,17 @@ class Article
 
     #[ORM\Column(length: 255)]
     private ?string $photo = null;
+
+    #[ORM\ManyToOne(inversedBy: 'creatArticle')]
+    private ?User $user = null;
+
+    #[ORM\OneToMany(mappedBy: 'article', targetEntity: Quote::class)]
+    private Collection $quoteArticle;
+
+    public function __construct()
+    {
+        $this->quoteArticle = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -75,6 +88,48 @@ class Article
     public function setPhoto(string $photo): static
     {
         $this->photo = $photo;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Quote>
+     */
+    public function getQuoteArticle(): Collection
+    {
+        return $this->quoteArticle;
+    }
+
+    public function addQuoteArticle(Quote $quoteArticle): static
+    {
+        if (!$this->quoteArticle->contains($quoteArticle)) {
+            $this->quoteArticle->add($quoteArticle);
+            $quoteArticle->setArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeQuoteArticle(Quote $quoteArticle): static
+    {
+        if ($this->quoteArticle->removeElement($quoteArticle)) {
+            // set the owning side to null (unless already changed)
+            if ($quoteArticle->getArticle() === $this) {
+                $quoteArticle->setArticle(null);
+            }
+        }
 
         return $this;
     }

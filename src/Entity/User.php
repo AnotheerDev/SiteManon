@@ -40,9 +40,25 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Post::class)]
     private Collection $creatPost;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Topic::class)]
+    private Collection $creatTopic;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Quote::class)]
+    private Collection $userQuote;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Article::class)]
+    private Collection $creatArticle;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Commande::class)]
+    private Collection $commander;
+
     public function __construct()
     {
         $this->creatPost = new ArrayCollection();
+        $this->creatTopic = new ArrayCollection();
+        $this->userQuote = new ArrayCollection();
+        $this->creatArticle = new ArrayCollection();
+        $this->commander = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -163,6 +179,126 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($creatPost->getUser() === $this) {
                 $creatPost->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Topic>
+     */
+    public function getCreatTopic(): Collection
+    {
+        return $this->creatTopic;
+    }
+
+    public function addCreatTopic(Topic $creatTopic): static
+    {
+        if (!$this->creatTopic->contains($creatTopic)) {
+            $this->creatTopic->add($creatTopic);
+            $creatTopic->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCreatTopic(Topic $creatTopic): static
+    {
+        if ($this->creatTopic->removeElement($creatTopic)) {
+            // set the owning side to null (unless already changed)
+            if ($creatTopic->getUser() === $this) {
+                $creatTopic->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Quote>
+     */
+    public function getUserQuote(): Collection
+    {
+        return $this->userQuote;
+    }
+
+    public function addUserQuote(Quote $userQuote): static
+    {
+        if (!$this->userQuote->contains($userQuote)) {
+            $this->userQuote->add($userQuote);
+            $userQuote->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserQuote(Quote $userQuote): static
+    {
+        if ($this->userQuote->removeElement($userQuote)) {
+            // set the owning side to null (unless already changed)
+            if ($userQuote->getUser() === $this) {
+                $userQuote->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Article>
+     */
+    public function getCreatArticle(): Collection
+    {
+        return $this->creatArticle;
+    }
+
+    public function addCreatArticle(Article $creatArticle): static
+    {
+        if (!$this->creatArticle->contains($creatArticle)) {
+            $this->creatArticle->add($creatArticle);
+            $creatArticle->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCreatArticle(Article $creatArticle): static
+    {
+        if ($this->creatArticle->removeElement($creatArticle)) {
+            // set the owning side to null (unless already changed)
+            if ($creatArticle->getUser() === $this) {
+                $creatArticle->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Commande>
+     */
+    public function getCommander(): Collection
+    {
+        return $this->commander;
+    }
+
+    public function addCommander(Commande $commander): static
+    {
+        if (!$this->commander->contains($commander)) {
+            $this->commander->add($commander);
+            $commander->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommander(Commande $commander): static
+    {
+        if ($this->commander->removeElement($commander)) {
+            // set the owning side to null (unless already changed)
+            if ($commander->getUser() === $this) {
+                $commander->setUser(null);
             }
         }
 

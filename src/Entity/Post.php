@@ -23,6 +23,9 @@ class Post
     #[ORM\ManyToOne(inversedBy: 'creatPost')]
     private ?User $user = null;
 
+    #[ORM\ManyToOne(inversedBy: 'posts')]
+    private ?Topic $topicPost = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +63,18 @@ class Post
     public function setUser(?User $user): static
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getTopicPost(): ?Topic
+    {
+        return $this->topicPost;
+    }
+
+    public function setTopicPost(?Topic $topicPost): static
+    {
+        $this->topicPost = $topicPost;
 
         return $this;
     }
