@@ -1,7 +1,4 @@
-*{
-    /* margin-left: 10px;
-    margin-right: 10px; */
-}
+/* view base.html.twig */
 
 #menu {
     z-index: 2;
@@ -107,18 +104,25 @@
     justify-content: flex-end;
 }
 
-#section2{
+
+/* view home index.html.twig */
+
+#sectionHome{
     height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
-#section2, H1, h2{
+#sectionHome, H1, h2{
     text-align: center;
 }
 
 #illustrationBureau{
     height: 600px;
     width: 700px;
-    
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
