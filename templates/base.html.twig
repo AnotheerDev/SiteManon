@@ -10,15 +10,32 @@
     </head>
 
     <body>
-        <section>
-            <nav>
+
+    <section id="section1">
+        <div id="menu">
+            <div id="menu-bar" onclick="menuOnClick()">
+                <div id="bar1" class="bar"></div>
+                <div id="bar2" class="bar"></div>
+                <div id="bar3" class="bar"></div>
+            </div>
+            <nav class="nav" id="nav">
                 <ul>
                     <li><a href="#">Home</a></li>
+                    <li><a href="#">My work</a></li>
                     <li><a href="#">Place</a></li>
+                    <li><a href="#">Shop</a></li>
                     <li><a href="#">Contact</a></li>
+                    <li><a href="#">Login</a></li>
                 </ul>
-            </nav>
-        </section>
+            </nav> 
+        </div>
+        {# Background du animé du menu #}
+        <div class="menu-bg" id="menu-bg"></div>
+        <img src="{{ asset('/img/manonManuscrit.PNG') }}" alt="logo" id="manonLogo">
+    </section>
+
+
+
         {% block body %}{% endblock %}
     </body>
 
