@@ -118,11 +118,71 @@
 }
 
 #illustrationBureau{
-    height: 600px;
-    width: 700px;
+    height: 300px;
+    width: 350px;
     margin-left: auto;
     margin-right: auto;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+/*=============== BREAKPOINTS ===============*/
+/* For small devices */
+@media screen and (max-width: 360px){
+
+}
+
+
+/* For medium devices */
+
+@media screen and (min-width: 767px) {
+
+}
+
+@media screen and (min-width: 992px) {
+    *{
+        margin-right: 10px;
+        margin-left: 10px;
+        box-sizing: border-box;
+    }
+
+    #menu-bar {
+        display: none; /* Hide the burger menu button */
+    }
+    
+    .nav {
+        display: flex;
+        padding-top: 25px;
+    }
+    
+    .nav ul {
+        padding: 0; /* Remove padding to align menu items */
+    }
+    
+    .nav li {
+        padding: 0 20px; /* Add horizontal spacing between menu items */
+    }
+    .nav li a{
+        color: black;
+    }
+
+    ul {
+        display: flex;
+    }
+
+    #sectionHome{
+        margin-top: 50px;
+    }
+
+    #illustrationBureau{
+        height: 500px;
+        width: 550px;
+    }
+}
+
+
+/* For large devices */
+@media screen and (min-width: 1024px) {
+
 }
