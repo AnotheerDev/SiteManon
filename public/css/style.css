@@ -141,10 +141,10 @@
 }
 
 @media screen and (min-width: 992px) {
-    *{
-        margin-right: 10px;
-        margin-left: 10px;
+    body{
         box-sizing: border-box;
+        padding-left: 50px;
+        padding-right: 50px;
     }
 
     #menu-bar {
@@ -154,6 +154,7 @@
     .nav {
         display: flex;
         padding-top: 25px;
+        padding-left: 50px;
     }
     
     .nav ul {
