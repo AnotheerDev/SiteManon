@@ -108,9 +108,10 @@
 /* view home index.html.twig */
 
 #sectionHome{
-    height: 100vh;
+    height: 90vh;
     display: flex;
     flex-direction: column;
+    margin-top: 50px;
 }
 
 #sectionHome, H1, h2{
@@ -120,11 +121,30 @@
 #illustrationBureau{
     height: 300px;
     width: 350px;
+    margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#sectionAbout{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#photoManon{
+    margin: auto;
+    height: 400px;
+    width: 200px;
+}
+
+#aboutMe{
+    margin-top: 50px;
+    margin-left: 20px;
+    text-align: justify;
 }
 
 /*=============== BREAKPOINTS ===============*/
@@ -180,10 +200,36 @@
         height: 500px;
         width: 550px;
     }
+
+    #sectionAbout{
+        height: 100vh;
+        display: flex;
+        justify-content: space-evenly;
+    }
 }
 
 
 /* For large devices */
 @media screen and (min-width: 1024px) {
 
+}
+
+@media screen and (min-width: 1250px) {
+    body{
+        box-sizing: border-box;
+        padding-left: 250px;
+        padding-right: 250px;
+    }
+
+    .nav {
+        display: flex;
+        padding-top: 25px;
+        padding-left: 250px;
+    }
+
+    #sectionAbout{
+        height: 100vh;
+        display: flex;
+        justify-content: space-evenly;
+    }
 }
