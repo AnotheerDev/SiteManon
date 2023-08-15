@@ -137,10 +137,23 @@
 #illustrationBureau{
     height: 300px;
     width: 350px;
-    margin: auto;
+    margin-bottom: auto;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.parallax-section{
+
+    background-image: url("../img/parallax.PNG");
+    height: 800px; 
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #sectionAbout{
