@@ -13,3 +13,45 @@ window.addEventListener('scroll', function() {
 
     parallax.style.backgroundPosition = 'center ' + (scrollPosition * 0,1) + 'px';
 });
+
+
+// Carousel
+document.addEventListener("DOMContentLoaded", function() {
+    const carouselInner = document.querySelector(".carousel-inner");
+    const carouselItems = document.querySelectorAll(".carousel-item");
+    const prevButton = document.querySelector(".prev-button");
+    const nextButton = document.querySelector(".next-button");
+
+    let currentIndex = 0;
+
+    prevButton.addEventListener("click", () => {
+        currentIndex = (currentIndex - 1 + carouselItems.length) % carouselItems.length;
+        updateCarousel();
+        resetInterval();
+    });
+
+    nextButton.addEventListener("click", () => {
+        currentIndex = (currentIndex + 1) % carouselItems.length;
+        updateCarousel();
+        resetInterval();
+    });
+
+    function updateCarousel() {
+        carouselInner.style.transform = `translateX(-${currentIndex * 25}%)`;
+    }
+
+    let interval = setInterval(() => {
+        currentIndex = (currentIndex + 1) % carouselItems.length;
+        updateCarousel();
+    }, 5000); // 5000 ms = 5 seconds
+
+    function resetInterval() {
+        clearInterval(interval);
+        interval = setInterval(() => {
+            currentIndex = (currentIndex + 1) % carouselItems.length;
+            updateCarousel();
+        }, 5000); // 5000 ms = 5 seconds
+    }
+});
+
+
