@@ -16,42 +16,75 @@ window.addEventListener('scroll', function() {
 
 
 // Carousel
+
+
+
 document.addEventListener("DOMContentLoaded", function() {
     const carouselInner = document.querySelector(".carousel-inner");
     const carouselItems = document.querySelectorAll(".carousel-item");
-    const prevButton = document.querySelector(".prev-button");
-    const nextButton = document.querySelector(".next-button");
+    // const prevButton = document.querySelector(".prev-button");
+    // const nextButton = document.querySelector(".next-button");
+    const carouselButtonsContainer = document.querySelector(".carousel-buttons");
 
     let currentIndex = 0;
+    let interval;
 
-    prevButton.addEventListener("click", () => {
-        currentIndex = (currentIndex - 1 + carouselItems.length) % carouselItems.length;
-        updateCarousel();
-        resetInterval();
+    carouselItems.forEach((item, index) => {
+        const button = document.createElement("button");
+        button.className = "carousel-button";
+        if (index === 0) {
+            button.classList.add("active");
+        }
+        button.addEventListener("click", () => {
+            currentIndex = index;
+            updateCarousel();
+            updateButtons();
+            resetInterval();
+        });
+        carouselButtonsContainer.appendChild(button);
     });
 
-    nextButton.addEventListener("click", () => {
-        currentIndex = (currentIndex + 1) % carouselItems.length;
-        updateCarousel();
-        resetInterval();
-    });
+    // prevButton.addEventListener("click", () => {
+    //     currentIndex = (currentIndex - 1 + carouselItems.length) % carouselItems.length;
+    //     updateCarousel();
+    //     updateButtons();
+    //     resetInterval();
+    // });
+
+    // nextButton.addEventListener("click", () => {
+    //     currentIndex = (currentIndex + 1) % carouselItems.length;
+    //     updateCarousel();
+    //     updateButtons();
+    //     resetInterval();
+    // });
 
     function updateCarousel() {
         carouselInner.style.transform = `translateX(-${currentIndex * 25}%)`;
     }
 
-    let interval = setInterval(() => {
+    function updateButtons() {
+        carouselButtonsContainer.querySelectorAll(".carousel-button").forEach((button, index) => {
+            if (index === currentIndex) {
+                button.classList.add("active");
+            } else {
+                button.classList.remove("active");
+            }
+        });
+    }
+
+    interval = setInterval(() => {
         currentIndex = (currentIndex + 1) % carouselItems.length;
         updateCarousel();
-    }, 5000); // 5000 ms = 5 seconds
+        updateButtons();
+    }, 5000);
 
     function resetInterval() {
         clearInterval(interval);
         interval = setInterval(() => {
             currentIndex = (currentIndex + 1) % carouselItems.length;
             updateCarousel();
-        }, 5000); // 5000 ms = 5 seconds
+            updateButtons();
+        }, 5000);
     }
 });
-
 
