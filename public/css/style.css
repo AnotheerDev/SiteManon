@@ -181,14 +181,15 @@
     height: 80vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
 }
 
 .carousel {
     width: 100%;
+    height: auto;
     overflow: hidden;
-    /* position: relative; */
+    position: relative;
 }
 
 .carousel-inner {
@@ -198,6 +199,7 @@
 }
 
 .carousel-item {
+    display: flex;
     flex: 0 0 25%; /* 25% pour 4 images */
 }
 
@@ -227,7 +229,17 @@
     background-color: #555;
 }
 
+#footer {
+    display: flex;
+    width: 100%;
+    height: 10vh;
+}
 
+.copyright{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 /*=============== BREAKPOINTS ===============*/
 /* For small devices */
 @media screen and (max-width: 360px){
