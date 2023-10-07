@@ -126,7 +126,7 @@
     display: flex;
     flex-direction: column;
     column-gap: 20px;
-    padding-top: 150px;
+    padding-top: 10px;
 }
 
 #sectionHome, h1, h2{
@@ -301,9 +301,9 @@
         display: flex;
     }
 
-    #sectionHome{
+    /* #sectionHome{
         margin-top: 50px;
-    }
+    } */
 
     #illustrationBureau{
         height: 500px;
