@@ -104,7 +104,7 @@
 
 .change-bg {
     width: 620px;
-    height: 560px;
+    height: 650px;
     transform: translate(-60%,-30%);
 }
 
@@ -264,6 +264,42 @@
     justify-content: center;
     align-items: center;
 }
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: transparent; /* Fond transparent */
+    min-width: 160px;
+    /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); Vous pouvez ajuster ou supprimer cette ombre si vous le souhaitez */
+    z-index: 1;
+}
+
+.dropdown-menu a {
+    color: white; /* Ajustez la couleur du texte pour qu'elle soit visible sur un fond transparent */
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    background-color: rgba(255, 255, 255, 0); /* Fond semi-transparent pour les liens */
+}
+
+.dropdown-menu a:hover {
+    background-color: rgba(255, 255, 255, 0); /* Fond un peu plus foncé au survol */
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-toggle:hover {
+    background-color: transparent; /* Fond transparent au survol du bouton */
+}
+
+
 /*=============== BREAKPOINTS ===============*/
 /* For small devices */
 @media screen and (max-width: 360px){
