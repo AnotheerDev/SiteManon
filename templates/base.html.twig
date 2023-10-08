@@ -26,7 +26,13 @@
                     <li><a href="{{ path('app_category') }}">Place</a></li>
                     <li><a href="#">Shop</a></li>
                     <li><a href="{{ path('app_contact') }}">Contact</a></li>
-                    <li><a href="{{ path('app_login') }}">Login</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle">Login/Register</a>
+                        <div class="dropdown-menu">
+                            <a href="{{ path('app_login') }}">Login</a>
+                            <a href="{{ path('app_register') }}">Register</a>
+                        </div>
+                    </li>
                 </ul>
             </nav> 
         </div>
