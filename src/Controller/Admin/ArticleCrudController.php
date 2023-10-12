@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Article;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
@@ -22,6 +23,7 @@ class ArticleCrudController extends AbstractCrudController
             // IdField::new('id'),
             TextField::new('title'),
             TextField::new('content'),
+            DateField::new('dateCreation'),
             ImageField::new('photo')->setBasePath('img/')->setUploadDir('public/img/'),
         ];
     }
