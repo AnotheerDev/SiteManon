@@ -299,6 +299,24 @@
     background-color: transparent; /* Fond transparent au survol du bouton */
 }
 
+.article-blog {
+    display:flex;
+    flex-direction: column;
+    & img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.single-article {
+    margin-top: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    text-align: justify;
+    border: 1px solid green;
+    padding: 5px;
+}
 
 /*=============== BREAKPOINTS ===============*/
 /* For small devices */
