@@ -1,20 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello NewsletterController!{% endblock %}
+{% block title %}Contact{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    {{ form_start(form) }}
+        {{ form_label(form.lastName) }}
+        {{ form_widget(form.lastName) }}
+        {{ form_label(form.firstName) }}
+        {{ form_widget(form.firstName) }}
+        {{ form_label(form.email) }}
+        {{ form_widget(form.email) }}
+        {{ form_label(form.subject) }}
+        {{ form_widget(form.subject) }}
+        {{ form_label(form.message) }}
+        {{ form_widget(form.message) }}
+        {{ form_rest(form) }}
+        <button type="submit">Envoyer</button>
+    {{ form_end(form) }}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/laragon/www/SiteManon/src/Controller/NewsletterController.php'|file_link(0) }}">src/Controller/NewsletterController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/laragon/www/SiteManon/templates/newsletter/index.html.twig'|file_link(0) }}">templates/newsletter/index.html.twig</a></code></li>
-    </ul>
-</div>
 {% endblock %}
