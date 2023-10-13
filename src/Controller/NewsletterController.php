@@ -2,9 +2,10 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Form\ContactRequestType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class NewsletterController extends AbstractController
 {
@@ -16,11 +17,12 @@ class NewsletterController extends AbstractController
         ]);
     }
 
-    #[Route('/newsletter', name: 'app_contact')]
+    #[Route('/newsletter/contact', name: 'app_contact')]
     public function contact(): Response
     {
-        return $this->render('contact/index.html.twig', [
-            'controller_name' => 'NewsletterController',
+        $form = $this->createForm(ContactRequestType::class);
+        return $this->render('newsletter/contact.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
 }
