@@ -20,6 +20,8 @@ class ContactRequestType extends AbstractType
             ->add('email',EmailType::class)
             ->add('subject',TextType::class)
             ->add('message', TextareaType::class)
+            // On peut mettre le submit ici ou dans le twig
+            // ->add('submit', submitType::class)
         ;
     }
 
