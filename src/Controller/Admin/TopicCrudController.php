@@ -3,6 +3,11 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Topic;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class TopicCrudController extends AbstractCrudController
@@ -12,14 +17,15 @@ class TopicCrudController extends AbstractCrudController
         return Topic::class;
     }
 
-    /*
+
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
+            AssociationField::new('user'),
+            AssociationField::new('categoryTopic'),
+            TextField::new('name'),
+            DateField::new('dateCreation'),
+            BooleanField::new('locked'),
         ];
     }
-    */
 }
