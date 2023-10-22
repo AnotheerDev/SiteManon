@@ -45,4 +45,17 @@ class CategoryRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+    public function findAllCategories()
+    {
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+        $qb->select('c')
+        ->from('App\Entity\Category', 'c')
+        ->orderBy('c.id', 'ASC'); // ou c.name pour le nom de la catégorie
+
+        $query = $qb->getQuery();
+        return $query->getResult();
+    }
+
 }

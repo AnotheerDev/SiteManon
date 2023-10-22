@@ -45,4 +45,18 @@ class TopicRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+    public function findTopicsByCategory(int $categoryId)
+    {
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+
+        $qb->select('t')
+            ->from('App\Entity\Topic', 't')
+            ->where('t.categoryTopic = :categoryId')
+            ->setParameter('categoryId', $categoryId)
+            ->orderBy('t.dateCreation', 'DESC');
+
+        return $qb->getQuery()->getResult();
+    }
 }
