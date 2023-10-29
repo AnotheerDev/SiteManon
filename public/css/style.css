@@ -373,6 +373,20 @@ input[type="password"]{
     align-items: flex-end;
 }
 
+/* Style pour les éléments bouton */
+
+.btn-blue {
+    background-color: #3939bc;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    margin-top: 10px;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
 
 /*=============== BREAKPOINTS ===============*/
 /* For small devices */
