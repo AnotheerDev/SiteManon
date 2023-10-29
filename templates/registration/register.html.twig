@@ -8,9 +8,9 @@
         <div role="alert">{{ flash_error }}</div>
     {% endfor %}
 
-    <section>
-        <h1>S'enregistrer</h1>
-        <div>
+    <section class="log">
+        <div class="centre">
+            <h1>S'enregistrer</h1>
             {{ form_errors(registrationForm) }}
 
             {{ form_start(registrationForm) }}
@@ -34,5 +34,9 @@
                 <button type="submit" class="btn-blue">S'enregistrer</button>
             {{ form_end(registrationForm) }}
         </div>
+        <div>
+            <img src="{{ asset('/img/illustrationLogin.PNG') }}" alt="illuLogin" id="illuLogin">
+        </div>
     </section>
+
 {% endblock %}
