@@ -315,6 +315,65 @@
     margin: 50px 20px 20px 20px;
 }
 
+/* tout ce qui concerne les form */
+/* Style pour le conteneur du formulaire */
+.centre {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 400px;
+    margin: 200px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#illuLogin{
+    height: 450px;
+    width: 600px;
+}
+
+.log{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+/* Style pour les messages d'erreur */
+[role="alert"] {
+    color: red;
+    margin-bottom: 10px;
+}
+
+/* Style pour les éléments du formulaire */
+.form-row {
+    margin-bottom: 10px;
+}
+
+.form-label {
+    display: block;
+    font-weight: bold;
+}
+
+.form-input,
+.form-checkbox {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-checkbox {
+    display: inline-block;
+    width: auto;
+    margin-right: 10px;
+}
+
+input[type="password"]{
+    display: flex;
+    align-items: flex-end;
+}
+
+
 /*=============== BREAKPOINTS ===============*/
 /* For small devices */
 @media screen and (max-width: 360px){
