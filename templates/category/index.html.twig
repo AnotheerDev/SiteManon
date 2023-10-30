@@ -3,19 +3,48 @@
 {% block title %}Liste des catégories{% endblock %}
 
 {% block body %}
+<main class="main-cat">
+    <section class="thematiques-section">
+        <h4>THEMATIQUES</h4>
+        <ul class="thematiques">
+            {% for category in categories %}
+                <li>
+                    <a href="{{ path('app_topics', {'categoryId': category.id}) }}">
+                        {{ category.name }}
+                    </a>
+                </li>
+            {% else %}
+                <li>Aucune catégorie trouvée.</li>
+            {% endfor %}
+        </ul>
+    </section>
 
-<h1>Liste des catégories</h1>
+    <div>
+        <p>ici il y aura les post les plus vues / derniers envoyés</p>
+    </div>
 
-<ul>
-    {% for category in categories %}
-        <li>
-            <a href="{{ path('app_topics', {'categoryId': category.id}) }}">
-                {{ category.name }}
-            </a>
-        </li>
-    {% else %}
-        <li>Aucune catégorie trouvée.</li>
-    {% endfor %}
-</ul>
+    <section class="rules-section">
+        <ul id="rules">
+            <li>
+                <h5>1. Use correct title formatting</h5>
+            </li>
 
+            <li>
+                <h5>2. Direct Image/Video Links Only</h5>
+            </li>
+
+            <li>
+                <h5>3. Do Not Make Multiple Posts</h5>
+            </li>
+
+            <li>
+                <h5>4. Do Not Post Memes or Low Quality Work</h5>
+            </li>
+
+            <li>
+                <h5>5. Be Respectful and Stay on Topic</h5>
+            </li>
+        </ul>
+    </section>
+</main>
 {% endblock %}
