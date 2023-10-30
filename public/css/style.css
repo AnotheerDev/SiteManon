@@ -322,7 +322,7 @@
     flex-direction: column;
     align-items: center;
     max-width: 400px;
-    margin: 200px auto;
+    margin: 50px auto;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -333,11 +333,17 @@
     width: 600px;
 }
 
+#illuContact{
+    height: 450px;
+    min-width: 600px;
+}
+
 .log{
     display: flex;
     flex-direction: row;
     align-items: center;
 }
+
 /* Style pour les messages d'erreur */
 [role="alert"] {
     color: red;
@@ -371,6 +377,16 @@
 input[type="password"]{
     display: flex;
     align-items: flex-end;
+}
+
+.form-message {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none; /* Empêche le redimensionnement */
+    height: 250px; /* Hauteur initiale */
+    width: 190%;
 }
 
 /* Style pour les éléments bouton */
@@ -560,8 +576,12 @@ input[type="password"]{
         flex-direction: column;
         column-gap: 20px;
         /* padding-top: 70px; */
-    }
+    }   
 
+    .centre2{
+        min-width: 500px;
+        align-items: flex-start;
+    }
 }
 
 
