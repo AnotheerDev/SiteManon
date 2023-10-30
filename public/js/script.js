@@ -9,7 +9,7 @@ function menuOnClick() {
 
 window.addEventListener('scroll', function() {
     var parallax = document.querySelector('.parallax-section');
-    var scrollPosition = window.scrollY; // Utilisez 'scrollY' à la place de 'pageYOffset'
+    var scrollPosition = window.scrollY; // Utilise 'scrollY' à la place de 'pageYOffset'
 
     parallax.style.backgroundPosition = 'center ' + (scrollPosition * 0,1) + 'px';
 });
