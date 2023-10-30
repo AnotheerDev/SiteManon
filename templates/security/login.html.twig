@@ -19,7 +19,8 @@
                 <div class="mb-3">
                     Vous êtes connecté en tant que {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Se déconnecter</a>
                 </div>
-            {% endif %}
+            {% else %}
+            
 
             <form method="post">
                 <div class="form-row">
@@ -34,8 +35,10 @@
                 <button type="submit" class="btn-blue">Se connecter</button>
             </form>
         </div>
+        {% endif %}
         <div>
             <img src="{{ asset('/img/illustrationLogin.PNG') }}" alt="illuLogin" id="illuLogin">
         </div>
+
     </section>
 {% endblock %}
