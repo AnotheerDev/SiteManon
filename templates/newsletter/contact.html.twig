@@ -3,20 +3,40 @@
 {% block title %}Contact{% endblock %}
 
 {% block body %}
+    <section class="log">
+        <div class="centre centre2">
+            <h1>Contact</h1>
+            {{ form_errors(form) }}
 
-    {{ form_start(form) }}
-        {{ form_label(form.lastName) }}
-        {{ form_widget(form.lastName) }}
-        {{ form_label(form.firstName) }}
-        {{ form_widget(form.firstName) }}
-        {{ form_label(form.email) }}
-        {{ form_widget(form.email) }}
-        {{ form_label(form.subject) }}
-        {{ form_widget(form.subject) }}
-        {{ form_label(form.message) }}
-        {{ form_widget(form.message) }}
-        {{ form_rest(form) }}
-        <button type="submit">Envoyer</button>
-    {{ form_end(form) }}
-
+            {{ form_start(form) }}
+                <div class="form-row">
+                    {{ form_label(form.lastName) }}
+                    {{ form_widget(form.lastName, {'attr': {'class': 'form-input'}}) }}
+                </div>
+                <div class="form-row">
+                    {{ form_label(form.firstName) }}
+                    {{ form_widget(form.firstName, {'attr': {'class': 'form-input'}}) }}
+                </div>
+                <div class="form-row">
+                    {{ form_label(form.email) }}
+                    {{ form_widget(form.email, {'attr': {'class': 'form-input'}}) }}
+                </div>
+                <div class="form-row">
+                    {{ form_label(form.subject) }}
+                    {{ form_widget(form.subject, {'attr': {'class': 'form-input'}}) }}
+                </div>
+                <div class="form-row">
+                    {{ form_label(form.message) }}
+                    {{ form_widget(form.message, {'attr': {'class': 'form-input form-message'}}) }}
+                </div>                
+                {{ form_rest(form) }}
+                <button type="submit" class="btn-blue">Envoyer</button>
+            {{ form_end(form) }}
+        </div>
+        <div>
+            <img src="{{ asset('/img/illustrationContact.PNG') }}" alt="illuContact" id="illuContact">
+        </div>
+    </section>
 {% endblock %}
+
+
