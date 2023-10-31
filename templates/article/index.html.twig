@@ -12,13 +12,19 @@
   {% for article in articles %}
     <div class="single-article">
       <h2>{{ article.title }}</h2>
-      <p>{{ article.content|raw }}</p>
-      <img src="{{ asset('img/' ~ article.photo) }}" alt="Illu">
+      <div class="article">
+        <p>{{ article.content|raw }}</p>
+      <img src="{{ asset('img/' ~ article.photo) }}" alt="Illu" class="image-reduite" onclick="openModal(this.src)">
+      </div>
       <p> Posté le : {{ article.dateCreation|date('d-m-Y')}}</p>
     </div>
   {% endfor %}
 </div>
 
-
+<!-- Modal -->
+<div id="myModal" class="modal">
+  <span class="close" onclick="closeModal()">&times;</span>
+  <img class="modal-content" id="img01">
+</div>
 
 {% endblock %}
