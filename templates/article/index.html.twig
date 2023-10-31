@@ -12,7 +12,7 @@
   {% for article in articles %}
     <div class="single-article">
       <h2>{{ article.title }}</h2>
-      <p>{{ article.content }}</p>
+      <p>{{ article.content|raw }}</p>
       <img src="{{ asset('img/' ~ article.photo) }}" alt="Illu">
       <p> Posté le : {{ article.dateCreation|date('d-m-Y')}}</p>
     </div>
