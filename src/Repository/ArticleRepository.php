@@ -22,17 +22,26 @@ class ArticleRepository extends ServiceEntityRepository
     }
 
 
-    public function findAllArticles()
-    {
-        $em = $this->getEntityManager();
-        $qb = $em->createQueryBuilder();
-        $qb->select('a')
-            ->from('App\Entity\Article', 'a')
-            ->orderBy('a.dateCreation', 'DESC');
+    // public function findAllArticles()
+    // {
+    //     $em = $this->getEntityManager();
+    //     $qb = $em->createQueryBuilder();
+    //     $qb->select('a')
+    //         ->from('App\Entity\Article', 'a')
+    //         ->orderBy('a.dateCreation', 'DESC');
 
-        $query = $qb->getQuery();
-        return $query->getResult();
+    //     $query = $qb->getQuery();
+    //     return $query->getResult();
+    // }
+
+    // KnpPaginatorBundle doit avoir un objet et pas un tableau
+    public function findAllArticlesQuery()
+    {
+        return $this->createQueryBuilder('a')
+            ->orderBy('a.dateCreation', 'DESC')
+            ->getQuery();
     }
+
 //    /**
 //     * @return Article[] Returns an array of Article objects
 //     */
