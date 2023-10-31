@@ -1,0 +1,10 @@
+knp_paginator:
+    page_range: 3 # nombre de liens affichés dans la pagination
+    default_options:
+        sort_field_name: 'id' # champ par défaut pour le tri
+        sort_direction_name: 'asc' # direction par défaut pour le tri
+        filter_field_name: 'filter' # champ par défaut pour le filtre
+        filter_value_name: 'filterValue' # valeur par défaut pour le filtre
+    template:
+        pagination: '@KnpPaginator/Pagination/sliding.html.twig' # template pour la pagination
+        sortable: '@KnpPaginator/Pagination/sortable_link.html.twig' # template pour les liens triables
