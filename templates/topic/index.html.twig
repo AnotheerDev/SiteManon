@@ -13,14 +13,14 @@
 <ul>
     {% for topic in topics %}
         <li>
-            <strong>{{ topic.name }}</strong> - Créé le {{ topic.dateCreation|date('d-m-Y') }}
+            <a href="{{ path('app_posts', {'topicId': topic.id}) }}"><strong>{{ topic.name }}</strong></a> - Créé le {{ topic.dateCreation|date('d-m-Y') }}
             {% if topic.locked %}
                 (Verrouillé)
             {% endif %}
             - Par {{ topic.user.nickname }} 
         </li>
     {% else %}
-        <li>Aucun topic trouvé pour cette catégorie.</li>
+        <li>Aucun topic trouvé pour cette catégorie.</li>   
     {% endfor %}
 </ul>
 
