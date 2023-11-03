@@ -13,7 +13,13 @@ class TopicType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class)
+            ->add('name', TextType::class,
+            [
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Entrez le nom du topic'
+                ]
+            ])
             // ->add('locked')
             // ->add('dateCreation')
             // ->add('categoryTopic')
