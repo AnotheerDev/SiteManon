@@ -7,8 +7,10 @@
 {% block title %}Topics de la catégorie{% endblock %}
 
 {% block body %}
-
 <h1>Topics de la catégorie "{{ categoryName }}"</h1>
+<main class="main-cat">
+
+{% include "_partials/_thematique.html.twig" %}
 
 <ul>
     {% for topic in topics %}
@@ -23,5 +25,6 @@
         <li>Aucun topic trouvé pour cette catégorie.</li>   
     {% endfor %}
 </ul>
-
+{% include "_partials/_rules.html.twig" %}
+</main>
 {% endblock %}

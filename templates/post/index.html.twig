@@ -5,13 +5,16 @@
 {% block title %}Post{% endblock %}
 
 {% block body %}
-
 <h2>{{ topicName }}</h2>
+<main class="main-cat">
 
-{% for post in posts %}
-    <div class="post">
-        <p>{{ post.content|raw}}</p>
-    </div>
-{% endfor %}
-
+    {% include "_partials/_thematique.html.twig" %}
+    
+    {% for post in posts %}
+        <div class="post">
+            <p>{{ post.content|raw}}</p>
+        </div>
+    {% endfor %}
+    {% include "_partials/_rules.html.twig" %}
+    </main>
 {% endblock %}
