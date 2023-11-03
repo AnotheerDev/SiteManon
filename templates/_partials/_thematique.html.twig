@@ -1,0 +1,14 @@
+<section class="thematiques-section">
+    <h4>THEMATIQUES</h4>
+    <ul class="thematiques">
+        {% for category in categories %}
+        <li>
+            <a href="{{ path('app_topics', {'categoryId': category.id}) }}">
+                {{ category.name }}
+            </a>
+        </li>
+        {% else %}
+        <li>Aucune catégorie trouvée.</li>
+        {% endfor %}
+    </ul>
+</section>
