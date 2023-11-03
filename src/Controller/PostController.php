@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\PostRepository;
 use App\Repository\TopicRepository;
+use App\Repository\CategoryRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,7 +20,7 @@ class PostController extends AbstractController
     }
 
     #[Route('/post/{topicId}', name: 'app_posts')]
-    public function posts(int $topicId, TopicRepository $topicRepository, PostRepository $postRepository): Response
+    public function posts(int $topicId, TopicRepository $topicRepository, PostRepository $postRepository, CategoryRepository $categoryRepository): Response
     {
         // Récupérer l'objet Topic depuis la base de données
         $topic = $topicRepository->find($topicId);
@@ -31,12 +32,14 @@ class PostController extends AbstractController
         // Récupérer les posts liés à ce topic
         $posts = $postRepository->findPostsByTopic($topicId);
     
-        // Passer les posts et le nom du topic à la vue
+        // Passer les posts, le nom du topic, et les catégories à la vue
         return $this->render('post/index.html.twig', [
             'posts' => $posts,
-            'topicName' => $topic->getName(), // Ici on utilise l'objet Topic pour obtenir le nom
+            'topicName' => $topic->getName(),
+            'categories' => $categoryRepository->findAll(),
         ]);
     }
+    
     
     
 }
