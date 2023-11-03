@@ -10,26 +10,33 @@
 <h1>Topics de la catégorie "{{ categoryName }}"</h1>
 <main class="main-cat">
 
-{% include "_partials/_thematique.html.twig" %}
+    {% include "_partials/_thematique.html.twig" %}
 
-{{ form_start(form) }}
-{{ form_widget(form) }}
-<button type="submit">Ajouter un topic</button>
-{{ form_end(form) }}
-
-<ul>
-    {% for topic in topics %}
-        <li>
-            <a href="{{ path('app_posts', {'topicId': topic.id}) }}"><strong>{{ topic.name }}</strong></a> - Créé le {{ topic.dateCreation|date('d-m-Y') }}
-            {% if topic.locked %}
+    <section class="middle-topic">
+        <h3>Ajouter un nouveau topic</h3>
+        <div class="form-row">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button type="submit" class="btn-blue">Ajouter</button>
+            {{ form_end(form) }}
+        </div>
+        <ul>
+            {% for topic in topics %}
+            <li>
+                <a href="{{ path('app_posts', {'topicId': topic.id}) }}"><strong>{{ topic.name }}</strong></a> - Créé le
+                {{ topic.dateCreation|date('d-m-Y') }}
+                {% if topic.locked %}
                 (Verrouillé)
-            {% endif %}
-            - Par {{ topic.user.nickname }} 
-        </li>
-    {% else %}
-        <li>Aucun topic trouvé pour cette catégorie.</li>   
-    {% endfor %}
-</ul>
-{% include "_partials/_rules.html.twig" %}
+                {% endif %}
+                - Par {{ topic.user.nickname }}
+            </li>
+            {% else %}
+            <li>Aucun topic trouvé pour cette catégorie.</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+
+    {% include "_partials/_rules.html.twig" %}
 </main>
 {% endblock %}
