@@ -451,6 +451,20 @@ input[type="password"]{
     cursor: pointer;
 }
 
+/* Style pour forum */
+
+.middle-topic {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.middle-topic ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
 
 /*=============== BREAKPOINTS ===============*/
 /* For small devices */
