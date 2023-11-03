@@ -6,6 +6,7 @@ use App\Entity\Post;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class PostType extends AbstractType
 {
@@ -13,9 +14,15 @@ class PostType extends AbstractType
     {
         $builder
             // ->add('dateCreation')
-            ->add('content')
-            ->add('user')
-            ->add('topicPost')
+            ->add('content', TextareaType::class,
+            [
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Entrez votre message'
+                ]
+            ])
+            // ->add('user')
+            // ->add('topicPost')
         ;
     }
 
