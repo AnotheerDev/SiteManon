@@ -12,6 +12,11 @@
 
 {% include "_partials/_thematique.html.twig" %}
 
+{{ form_start(form) }}
+{{ form_widget(form) }}
+<button type="submit">Ajouter un topic</button>
+{{ form_end(form) }}
+
 <ul>
     {% for topic in topics %}
         <li>
