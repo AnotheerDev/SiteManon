@@ -37,6 +37,7 @@ class TopicController extends AbstractController
         return $this->render('topic/index.html.twig', [
             'topics' => $topics,
             'categoryName' => $category->getName(), // Ici l'objet Category pour obtenir le nom
+            'categories' => $categoryRepository->findAll(),
         ]);
     }
 }
