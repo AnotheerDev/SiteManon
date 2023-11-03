@@ -466,6 +466,31 @@ input[type="password"]{
     align-items: center;
 }
 
+
+/* FORUM POST
+ */
+.middle-post {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.post {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 20px; /* espace entre les posts */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* ombre légère */
+}
+
+.post p {
+    margin: 0;
+}
+
+
+
+
 /*=============== BREAKPOINTS ===============*/
 /* For small devices */
 @media screen and (min-width: 360px){
