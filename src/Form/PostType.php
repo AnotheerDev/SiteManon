@@ -17,6 +17,7 @@ class PostType extends AbstractType
             ->add('content', TextareaType::class,
             [
                 'label' => false,
+                'attr' => ['class' => 'mce'],
                 'attr' => [
                     'placeholder' => 'Entrez votre message'
                 ]
