@@ -1,26 +1,42 @@
 {% extends 'base.html.twig' %}
-{% block meta_description %}
-<meta name="post" content=" here we can see all the post from a specific topic">
+
+{% block javascripts %}
+<script src="https://cdn.tiny.cloud/1/wf9m32hoge9fgzzk0h8hap6mwf2v3fiz60uexkh7eh1jqe8t/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: 'textarea',
+        language: 'fr_FR',
+        init_instance_callback: function (editor) {
+            var freeTiny = document.querySelector('.mce');
+            freeTiny.style.display = 'none';
+        }
+    })
+</script>
 {% endblock %}
-{% block title %}Post{% endblock %}
 
 {% block body %}
 <h2>{{ topicName }}</h2>
 <main class="main-cat">
-
     {% include "_partials/_thematique.html.twig" %}
 
-    {% for post in posts %}
-    <div class="post">
-        <p>{{ post.content|raw}}</p>
-    </div>
-    {% endfor %}
+    <section class="middle-post">
+        {% for post in posts %}
+        <div class="post">
+            <p>{{ post.user.nickname}} :</p>
+            <p>{{ post.content|raw }}</p>
+            <p> Posté le {{ post.dateCreation|date('d-m-Y') }}</p>
+        </div>
+        {% endfor %}
+    
+        {{ form_start(form, {'method': 'post', 'attr': {'class': 'post-form'}}) }}
+        {{ form_widget(form) }}
+        <button type="submit" class="btn-blue">Ajouter le post</button>
+        {{ form_end(form) }}
+    </section>
 
-    {{ form_start(form, {'method': 'post'}) }}
-    {{ form_widget(form) }}
-    <button type="submit">Ajouter le post</button>
-    {{ form_end(form) }}
 
     {% include "_partials/_rules.html.twig" %}
 </main>
+
+
 {% endblock %}
