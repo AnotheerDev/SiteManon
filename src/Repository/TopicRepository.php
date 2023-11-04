@@ -59,4 +59,20 @@ class TopicRepository extends ServiceEntityRepository
 
         return $qb->getQuery()->getResult();
     }
+
+
+    public function findMostClickedTopics($limit = 3)
+    {
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+    
+        $qb->select('t')
+            ->from('App\Entity\Topic', 't')
+            ->orderBy('t.clickCount', 'DESC')
+            ->setMaxResults($limit);
+    
+        return $qb->getQuery()->getResult();
+    }
+    
+
 }
