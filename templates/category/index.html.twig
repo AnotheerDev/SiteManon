@@ -13,19 +13,24 @@
         <h4>THEMATIQUES</h4>
         <ul class="thematiques">
             {% for category in categories %}
-                <li>
-                    <a href="{{ path('app_topics', {'categoryId': category.id}) }}">
-                        {{ category.name }}
-                    </a>
-                </li>
+            <li>
+                <a href="{{ path('app_topics', {'categoryId': category.id}) }}">
+                    {{ category.name }}
+                </a>
+            </li>
             {% else %}
-                <li>Aucune catégorie trouvée.</li>
+            <li>Aucune catégorie trouvée.</li>
             {% endfor %}
         </ul>
     </section>
 
     <div>
-        <p>ici il y aura les post les plus vues / derniers envoyés</p>
+        {% for topic in mostClickedTopics %}
+        <div>
+            <h3>{{ topic.name }}</h3>
+            <p> {{ topic.clickCount }} ♥ </p>
+        </div>
+        {% endfor %}
     </div>
 
     <section class="rules-section">
