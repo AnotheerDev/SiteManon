@@ -13,6 +13,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+
+use Symfony\Component\HttpFoundation\JsonResponse;
+
 class TopicController extends AbstractController
 {
     #[Route('/topic', name: 'app_topic')]
@@ -22,6 +25,22 @@ class TopicController extends AbstractController
             'controller_name' => 'TopicController',
         ]);
     }
+
+    #[Route('/topic/{id}/click', name: 'topic_click', methods: ['POST'])]
+    public function incrementTopicClickCount(Topic $topic, EntityManagerInterface $entityManager): JsonResponse
+    {
+        // Incrémente le compteur de clics
+        $currentClickCount = $topic->getClickCount();
+        $topic->setClickCount($currentClickCount + 1);
+    
+        // Sauvegarde les changements dans la base de données
+        $entityManager->persist($topic);
+        $entityManager->flush();
+    
+        // Retourne le nouveau compteur de clics en tant que réponse JSON
+        return new JsonResponse(['clickCount' => $topic->getClickCount()]);
+    }
+    
 
 
     private $security;
