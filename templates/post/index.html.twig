@@ -7,10 +7,14 @@
         selector: 'textarea',
         language: 'fr_FR',
         init_instance_callback: function (editor) {
-            var freeTiny = document.querySelector('.mce');
-            freeTiny.style.display = 'none';
+            editor.on('init', function () {
+                var freeTiny = document.querySelector('.tox .tox-notification--in');
+                if (freeTiny) {
+                    freeTiny.style.display = 'none';
+                }
+            });
         }
-    })
+    });
 </script>
 {% endblock %}
 
