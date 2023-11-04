@@ -34,6 +34,9 @@ class Topic
     #[ORM\ManyToOne(inversedBy: 'creatTopic')]
     private ?User $user = null;
 
+    #[ORM\Column]
+    private ?int $clickCount = null;
+
     public function __construct()
     {
         $this->posts = new ArrayCollection();
@@ -137,5 +140,17 @@ class Topic
     public function __toString(): string
     {
         return $this->name;
+    }
+
+    public function getClickCount(): ?int
+    {
+        return $this->clickCount;
+    }
+
+    public function setClickCount(int $clickCount): static
+    {
+        $this->clickCount = $clickCount;
+
+        return $this;
     }
 }
