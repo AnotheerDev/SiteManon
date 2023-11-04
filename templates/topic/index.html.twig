@@ -22,13 +22,15 @@
         </div>
         <ul>
             {% for topic in topics %}
-            <li>
-                <a href="{{ path('app_posts', {'topicId': topic.id}) }}"><strong>{{ topic.name }}</strong></a> - Créé le
+            <li class="topic-item" data-id="{{ topic.id }}">
+                <a href="{{ path('app_posts', {'topicId': topic.id}) }}" class="topic-link"><strong>{{ topic.name }}</strong></a> - Créé le
                 {{ topic.dateCreation|date('d-m-Y') }}
                 {% if topic.locked %}
                 (Verrouillé)
                 {% endif %}
                 - Par {{ topic.user.nickname }}
+                <span class="click-count">Clicks: {{ topic.clickCount }}</span>
+                <button class="like-button">♥</button>
             </li>
             {% else %}
             <li>Aucun topic trouvé pour cette catégorie.</li>
