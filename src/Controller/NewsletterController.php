@@ -45,19 +45,24 @@ class NewsletterController extends AbstractController
     #[Route('/newsletter/contact', name: 'app_contact')]
     public function contact(Request $request, MailerInterface $mailer): Response
     {
+        // Création d'une nouvelle demande de contact
         $contactRequest = new ContactRequest();
+        // Création du formulaire
         $form = $this->createForm(ContactRequestType::class, $contactRequest);
+        // Gestion de la requête
         $form->handleRequest($request);
+        // Vérification de la soumission et de la validité du formulaire
         if ($form->isSubmitted() && $form->isValid()) {
             // Créer et envoyer l'e-mail
             $email = (new Email())
-                ->from('votre@adresse.email') // Remplacez par votre adresse e-mail
-                ->to('destinataire@adresse.email') // Remplacez par l'adresse e-mail du destinataire
+                ->from('votre@adresse.email') //  votre adresse e-mail
+                ->to('destinataire@adresse.email') // l'adresse e-mail du destinataire
                 ->subject('Nouvelle demande de contact')
                 ->text("Nom: {$contactRequest->getLastName()}\nPrénom: {$contactRequest->getFirstName()}\nEmail: {$contactRequest->getEmail()}\nSujet: {$contactRequest->getSubject()}\nMessage: {$contactRequest->getMessage()}");
             
+            // Envoi de l'e-mail
             $mailer->send($email);
-
+            // Confirmation de l'envoi
             $this->addFlash('success', 'Votre demande a bien été envoyée');
             return $this->redirectToRoute('app_contact');
         }
