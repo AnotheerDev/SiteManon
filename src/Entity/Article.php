@@ -134,6 +134,11 @@ class Article
         return $this;
     }
 
+    public function getCommentCount(): int
+    {
+        return $this->quoteArticle->count();
+    }
+
     public function __toString(): string
     {
         return $this->title;
