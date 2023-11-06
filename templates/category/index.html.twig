@@ -25,10 +25,12 @@
     </section>
 
     <div>
+        <h3>Les topics les plus vus :</h3>
         {% for topic in mostClickedTopics %}
-        <div>
-            <h3>{{ topic.name }}</h3>
-            <p> {{ topic.clickCount }} ♥ </p>
+        <div class="topic"> 
+            <a href="{{ path('app_posts', {'topicId': topic.id}) }}" class="topic-link"> <h3><strong>{{ topic.name }}</strong></h3>
+            </a> 
+            <p>- Créé le {{ topic.dateCreation|date('d-m-Y') }}, par {{ topic.user.nickname }}</p>
         </div>
         {% endfor %}
     </div>
