@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block meta_description %}
+<meta name="description" content="blog where the artist Manon Mangeol can expose her work">
+{% endblock %}
+
+{% block title %}{{ article.getTitle }}{% endblock %}
+
+{% block body %}
+
+<article>
+  <header>
+    <h1>{{ article.getTitle }}</h1>
+
+  </header>
+  <div>
+    {{ article.getContent|raw }}
+  </div>
+  <div>
+    <img src="{{ asset('img/' ~ article.getPhoto) }}" alt="Illu" class="image-reduite" onclick="openModal(this.src)">
+  </div>
+  <div>
+    <p>Posté le {{ article.getDateCreation|date('d/m/Y H:i') }}, Par {{ article.getUser.getNickname }}</p>
+  </div>
+
+</article>
+
+<section>
+  {{ form_start(form) }}
+  {{ form_widget(form) }}
+  <button type="submit">Commenter</button>
+  {{ form_end(form) }}
+</section>
+
+<h3>Commentaires:</h3>
+{% for quote in article.getQuoteArticle %}
+<div>
+  <strong>{{ quote.getUser.getNickname }}</strong>
+  <p>{{ quote.getContent }}</p>
+  <p>Posté le {{ quote.getDateCreation|date('d/m/Y') }}</p>
+</div>
+{% endfor %}
+
+<!-- Modal -->
+<div id="myModal" class="modal">
+  <span class="close" onclick="closeModal()">&times;</span>
+  <img class="modal-content" id="img01" alt="Illu">
+</div>
+{% endblock %}
+
