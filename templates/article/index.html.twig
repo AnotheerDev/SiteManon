@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block meta_description %}
-<meta name="description"  content="blog where the artist Manon Mangeol can expose her work">
+<meta name="description" content="blog where the artist Manon Mangeol can expose her work">
 {% endblock %}
 
 {% block title %}Hello ArticleController!{% endblock %}
@@ -11,20 +11,23 @@
 <div class="article-blog">
   {% for article in articles %}
     <div class="single-article">
-      <h2>{{ article.title }}</h2>
+      <a href="{{ path('app_article_show', {'id': article.id}) }}"><h2>{{ article.title }}</h2></a>
       <div class="article">
         <p>{{ article.content|raw }}</p>
-      <img src="{{ asset('img/' ~ article.photo) }}" alt="Illu" class="image-reduite" onclick="openModal(this.src)">
+        <img src="{{ asset('img/' ~ article.photo) }}" alt="Illustration" class="image-reduite" onclick="openModal(this.src)">
       </div>
-      <p> Posté le : {{ article.dateCreation|date('d-m-Y')}}</p>
+      <p>Posté le : {{ article.dateCreation|date('d-m-Y') }}</p>
+      <a href="{{ path('app_article_show', {'id': article.id}) }}">
+        Commentaires ({{ article.getCommentCount() }})
+      </a>
     </div>
   {% endfor %}
 </div>
 
-<!-- Modal -->
+<!-- Modal for enlarged image view -->
 <div id="myModal" class="modal">
   <span class="close" onclick="closeModal()">&times;</span>
-  <img class="modal-content" id="img01" alt="Illu">
+  <img class="modal-content" id="img01" alt="Illustration">
 </div>
 
 {{ knp_pagination_render(articles) }}
