@@ -13,19 +13,15 @@ class PostType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            // ->add('dateCreation')
-            ->add('content', TextareaType::class,
-            [
+            ->add('content', TextareaType::class, [
                 'label' => false,
-                'attr' => ['class' => 'mce'],
                 'attr' => [
+                    'class' => 'mce', // cette classe est unique et utilisée uniquement pour TinyMCE
                     'placeholder' => 'Entrez votre message'
                 ]
-            ])
-            // ->add('user')
-            // ->add('topicPost')
-        ;
+            ]);
     }
+    
 
     public function configureOptions(OptionsResolver $resolver): void
     {
