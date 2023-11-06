@@ -13,27 +13,32 @@
     {% include "_partials/_thematique.html.twig" %}
 
     <section class="middle-topic">
-        <h3>Ajouter un nouveau topic</h3>
-        <div class="form-row">
-            {{ form_start(form) }}
-            {{ form_widget(form) }}
-            <button type="submit" class="btn-blue">Ajouter</button>
-            {{ form_end(form) }}
-        </div>
+
         <ul>
             {% for topic in topics %}
             <li class="topic-item" data-id="{{ topic.id }}">
-                <a href="{{ path('app_posts', {'topicId': topic.id}) }}" class="topic-link"><strong>{{ topic.name }}</strong></a> - Créé le
-                {{ topic.dateCreation|date('d-m-Y') }}
-                {% if topic.locked %}
-                (Verrouillé)
-                {% endif %}
-                - Par {{ topic.user.nickname }}
-                <span class="click-count">Vues: {{ topic.clickCount }}</span>
+                <div class="topic"> 
+                    <a href="{{ path('app_posts', {'topicId': topic.id}) }}" class="topic-link"> <h3><strong>{{ topic.name }}</strong></h3>
+                    </a> 
+                    <p>- Créé le {{ topic.dateCreation|date('d-m-Y') }}, par {{ topic.user.nickname }}</p>
+                    {% if topic.locked %}
+                    (Verrouillé)
+                    {% endif %}
+                    {# <p><span class="click-count">Vues: {{ topic.clickCount }}</span></p> #}
+                </div>
+
             </li>
             {% else %}
             <li>Aucun topic trouvé pour cette catégorie.</li>
             {% endfor %}
+
+            <h3>Ajouter un nouveau topic</h3>
+            <div class="form-row">
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <button type="submit" class="btn-blue">Ajouter</button>
+                {{ form_end(form) }}
+            </div>
         </ul>
     </section>
 
