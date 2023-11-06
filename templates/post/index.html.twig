@@ -3,19 +3,24 @@
 {% block javascripts %}
 <script src="https://cdn.tiny.cloud/1/wf9m32hoge9fgzzk0h8hap6mwf2v3fiz60uexkh7eh1jqe8t/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
-    tinymce.init({
-        selector: 'textarea',
-        language: 'fr_FR',
-        init_instance_callback: function (editor) {
-            editor.on('init', function () {
-                var freeTiny = document.querySelector('.tox .tox-notification--in');
-                if (freeTiny) {
-                    freeTiny.style.display = 'none';
-                }
-            });
-        }
+    document.addEventListener('DOMContentLoaded', function() {
+        tinymce.init({
+            selector: 'textarea.mce', //sélecteur correspond à textarea
+            language: 'fr_FR',
+            setup: function (editor) {
+                editor.on('change', function () {
+                    editor.save(); // Synchronisez le contenu de TinyMCE avec le textarea à chaque changement
+                });
+            }
+        });
+
+        var form = document.querySelector('.post-form');
+        form.addEventListener('submit', function(e) {
+            tinymce.triggerSave(); // Synchronise le contenu de TinyMCE avec le textarea avant la soumission
+        });
     });
 </script>
+
 {% endblock %}
 
 {% block body %}
