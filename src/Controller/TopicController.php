@@ -62,6 +62,7 @@ class TopicController extends AbstractController
     
         // Créer un nouveau topic et le formulaire associé
         $topic = new Topic();
+        $topic->setClickCount(0); // Définir le compteur de clics à 0 par défaut
         $form = $this->createForm(TopicType::class, $topic);
         $form->handleRequest($request);
     
