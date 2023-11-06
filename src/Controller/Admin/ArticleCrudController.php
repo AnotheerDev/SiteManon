@@ -7,6 +7,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class ArticleCrudController extends AbstractCrudController
@@ -22,6 +23,7 @@ class ArticleCrudController extends AbstractCrudController
         return [
             // ne pas afficher l'id et la date car si je dois créer un article je veux que l'id et la date soit généré automatiquement
             // IdField::new('id'),
+            AssociationField::new('user'),
             TextField::new('title'),
             TextEditorField::new('content'),
             DateField::new('dateCreation'),
