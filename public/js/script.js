@@ -68,51 +68,14 @@ function closeModal() {
     document.getElementById('myModal').style.display = "none";
 }
 
-// document.addEventListener('DOMContentLoaded', function() {
-//     const topics = document.querySelectorAll('.topic-item');
-
-//     topics.forEach(topic => {
-//         topic.addEventListener('click', function(event) {
-//             event.preventDefault(); // Empêche le comportement par défaut si .topic est un lien ou un bouton
-//             const topicId = this.dataset.id; // Récupère l'id du topic
-
-//             fetch(`/topic/${topicId}/click`, {
-//                 method: 'POST',
-//                 headers: {
-//                     'Content-Type': 'application/json',
-//                     // 'X-CSRF-TOKEN': 'Votre-CSRF-Token' // Si nécessaire
-//                 },
-//                 // body: JSON.stringify({}) // Si besoin d'envoyer des données supplémentaires
-//             })
-//             .then(response => {
-//                 if (!response.ok) {
-//                     throw new Error('Network response was not ok');
-//                 }
-//                 return response.json();
-//             })
-//             .then(data => {
-//                 // Met à jour le compteur de clics dans le DOM
-//                 const clickCountElement = this.querySelector('.click-count');
-//                 if (clickCountElement) {
-//                     clickCountElement.textContent = `Clicks: ${data.clickCount}`;
-//                 }
-//             })
-//             .catch(error => {
-//                 console.error('Error:', error);
-//                 // afficher une notification à l'utilisateur
-//             });
-//         });
-//     });
-// });
-
-
+// Clicks sur les topics
 document.addEventListener('DOMContentLoaded', function() {
-    const buttons = document.querySelectorAll('.like-button');
+    const topics = document.querySelectorAll('.topic-item');
 
-    buttons.forEach(button => {
-        button.addEventListener('click', function(event) {
-            event.stopPropagation(); // Empêche l'événement de remonter à l'élément parent
-            const topicId = this.parentElement.dataset.id;
+    topics.forEach(topic => {
+        topic.addEventListener('click', function(event) {
+            // event.preventDefault(); // Empêche le comportement par défaut si .topic est un lien ou un bouton
+            const topicId = this.dataset.id; // Récupère l'id du topic
 
             fetch(`/topic/${topicId}/click`, {
                 method: 'POST',
@@ -120,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     'Content-Type': 'application/json',
                     // 'X-CSRF-TOKEN': 'Votre-CSRF-Token' // Si nécessaire
                 },
-                // body: JSON.stringify({}) 
+                // body: JSON.stringify({}) // Si besoin d'envoyer des données supplémentaires
             })
             .then(response => {
                 if (!response.ok) {
@@ -130,18 +93,17 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(data => {
                 // Met à jour le compteur de clics dans le DOM
-                const clickCountElement = this.parentElement.querySelector('.click-count');
+                const clickCountElement = this.querySelector('.click-count');
                 if (clickCountElement) {
                     clickCountElement.textContent = `Clicks: ${data.clickCount}`;
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                // notification à l'utilisateur
+                // afficher une notification à l'utilisateur
             });
         });
     });
 });
-
 
 
