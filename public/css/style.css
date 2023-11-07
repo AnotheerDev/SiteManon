@@ -170,7 +170,7 @@ p {
 }
 
 #sectionAbout{
-    height: 80vh;
+    height: 100vh;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -181,6 +181,7 @@ p {
     margin: auto;
     height: 400px;
     width: 200px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
 #aboutMe{
@@ -199,6 +200,7 @@ p {
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
+    /* margin-top: 70px; */
 }
 
 .carousel {
@@ -350,6 +352,11 @@ p {
     padding-top: 10px;
 }
 
+.image-reduite {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
+
+
 
 
 /* tout ce qui concerne les form */
@@ -363,6 +370,7 @@ p {
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
 #illuLogin{
@@ -390,6 +398,7 @@ p {
 /* Style pour les éléments du formulaire */
 .form-row {
     margin-bottom: 10px;
+    font-family: var(--font-text);
 }
 
 .form-label {
@@ -417,13 +426,17 @@ input[type="password"]{
 }
 
 .form-message {
-    width: 90%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     resize: none; /* Empêche le redimensionnement */
     height: 250px; /* Hauteur initiale */
-    width: 190%;
+    width: 180%;
+}
+
+.already-registered {
+    text-align: center;
+    padding-bottom: 10px;
 }
 
 /* Style pour les éléments bouton */
@@ -437,7 +450,7 @@ input[type="password"]{
     margin-top: 10px;
     display: inline-block;
     font-size: 16px;
-    border-radius: 15px;
+    border-radius: 10px;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     cursor: pointer;
 }
@@ -578,6 +591,19 @@ input[type="password"]{
         gap: 20px;
         align-items: center;
     }
+
+    .form-message {
+        width: 90%;
+    }
+
+    .log{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #sectionCarousel{
+        margin-top: 70px;
+    }
 }
 
 
@@ -590,6 +616,7 @@ input[type="password"]{
 
     #sectionCarousel{
         flex-direction: column;
+        margin-top: 70px;
     }
     .article{
         display:flex;
