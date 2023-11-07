@@ -253,7 +253,7 @@ p {
     border-top: 1px solid #000000;
     display: flex;
     width: 100%;
-    height: 10vh;
+    /* height: 10vh; */
 }
 
 .social-icon {
@@ -445,9 +445,8 @@ input[type="password"]{
     background-color: #3939bc;
     border: none;
     color: white;
-    padding: 5px 10px;
+    padding: 10px 10px 10px 10px;
     text-align: center;
-    margin-top: 10px;
     display: inline-block;
     font-size: 16px;
     border-radius: 10px;
@@ -563,16 +562,33 @@ input[type="password"]{
 
 /* Style pour les fragments _partials */
 
+.iconeThematique{
+    height: 50px;
+    width: 50px;
+    margin-right: 10px; /* Ajoute un peu d'espace entre l'icône et le texte */
+}
+
+
 .thematiques-section{
     font-family: var(--font-nav);
 }
 
+.thematiques-section ul{
+    list-style-type: none;
+    padding: 0;
+}
+
 .thematiques a{
     text-decoration: none;
+    display: flex;
+    align-items: center; /* Alignement vertical */
+    text-decoration: none; /* Optionnel: enlève le soulignement du lien */
 }
 
 .rules-section{
     font-family: var(--font-nav);
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+    padding: 4px;
 }
 
 .middle-section h3{
@@ -597,7 +613,7 @@ input[type="password"]{
     }
 
     .log{
-        flex-direction: column;
+        /* flex-direction: column; */
         align-items: center;
     }
 
@@ -721,6 +737,7 @@ input[type="password"]{
         justify-content: space-between;
         margin-top: 50px;
         align-items: flex-start;
+        height: 100vh;
     }
 
     #rules{
@@ -774,9 +791,10 @@ input[type="password"]{
     }
 
     #sectionAbout{
-        height: 80vh;
+        height: 100vh;
         display: flex;
         justify-content: space-evenly;
+        padding: 0 200px 0 200px;
     }
 
     #sectionHome{
@@ -784,12 +802,21 @@ input[type="password"]{
         display: flex;
         flex-direction: column;
         column-gap: 20px;
-        /* padding-top: 70px; */
+        padding-top: 70px;
     }   
 
     .centre2{
         min-width: 500px;
         align-items: flex-start;
+    }
+
+    .form-message {
+        width: 180%;
+    }
+
+    .form-row {
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 }
 
