@@ -37,13 +37,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Post::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Post::class, orphanRemoval: false)]
     private Collection $creatPost;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Topic::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Topic::class, orphanRemoval: false)]
     private Collection $creatTopic;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Quote::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Quote::class, orphanRemoval: false)]
     private Collection $userQuote;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Article::class)]
