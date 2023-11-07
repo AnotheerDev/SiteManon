@@ -35,7 +35,7 @@
 <h3>Commentaires:</h3>
 {% for quote in article.getQuoteArticle %}
 <div>
-  <strong>{{ quote.getUser.getNickname }}</strong>
+  <strong>{{ quote.getUser.getNickname }}</strong> 
   <p>{{ quote.getContent }}</p>
   <p>Posté le {{ quote.getDateCreation|date('d/m/Y') }}</p>
 </div>
