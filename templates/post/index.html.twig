@@ -34,7 +34,7 @@
     <section class="middle-post">
         {% for post in posts %}
         <div class="post">
-            <p>{{ post.user.nickname}} :</p>
+            <p>{{ post.user|username_or_deleted }}:</p>
             <p>{{ post.content|raw }}</p>
             <p> Posté le {{ post.dateCreation|date('d-m-Y') }}</p>
         </div>
