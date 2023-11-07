@@ -1,3 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Borel:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sen&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&display=swap');
+
+
 /*=============== VARIABLES CSS ===============*/
 :root {
 
@@ -7,7 +12,9 @@
     --third-color: #3a7a59;
 
     /*========== Font and typography ==========*/
-
+    --font-title: 'Borel', sans-serif;
+    --font-nav: 'Sen', serif;
+    --font-text: 'Arvo', serif;
     /*========== Font weight ==========*/
 }
 
@@ -16,6 +23,7 @@
 
 #menu {
     z-index: 2;
+    font-family: var(--font-nav);
 }
 
 #menu-bar {
@@ -118,6 +126,10 @@
     justify-content: flex-end;
 }
 
+p {
+    font-family: var(--font-text);
+}
+
 
 /* view home index.html.twig */
 
@@ -126,12 +138,13 @@
     display: flex;
     flex-direction: column;
     column-gap: 20px;
-    padding-top: 10px;
+    padding-top: 25px;
 }
 
 #sectionHome, h1, h2{
     text-align: center;
-
+    font-family: var(--font-title);
+    color: var(--third-color);
 }
 
 #illustrationBureau{
@@ -161,6 +174,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    font-family: var(--font-text);
 }
 
 #photoManon{
@@ -299,6 +313,9 @@
     background-color: transparent; /* Fond transparent au survol du bouton */
 }
 
+
+/* Style pour la vue article */
+
 .article-blog {
     display:flex;
     flex-direction: column;
@@ -311,10 +328,28 @@
 .single-article {
     /* display: flex; */
     text-align: justify;
-    border: 1px solid green;
+    border-bottom: 1px solid green;
     padding: 5px;
     margin: 50px 20px 20px 20px;
+    font-family: var(--font-text);
 }
+
+.single-article:last-child {
+    border-bottom: none;
+}
+
+.single-article a {
+    text-decoration: none;
+}
+
+.comment {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+}
+
 
 
 /* tout ce qui concerne les form */
@@ -452,12 +487,21 @@ input[type="password"]{
 }
 
 /* Style pour forum */
+
+
 .topic {
-    border: 1px solid #ccc;
+    border-left: 1px solid #ccc; 
+    border-bottom: 1px solid #ccc;
     border-radius: 4px;
     padding: 15px;
     margin-bottom: 20px; /* espace entre les posts */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* ombre légère */
+    box-shadow: -2px 2px 4px rgba(0,0,0,0.1); 
+}
+
+
+
+.topic a {
+    text-decoration: none;
 }
 
 .topic h3 {
@@ -502,6 +546,27 @@ input[type="password"]{
 .post-form {
     margin-bottom: 20px;
 }
+
+
+/* Style pour les fragments _partials */
+
+.thematiques-section{
+    font-family: var(--font-nav);
+}
+
+.thematiques a{
+    text-decoration: none;
+}
+
+.rules-section{
+    font-family: var(--font-nav);
+}
+
+.middle-section h3{
+    font-family: var(--font-nav);
+}
+
+
 
 
 /*=============== BREAKPOINTS ===============*/
