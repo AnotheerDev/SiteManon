@@ -22,6 +22,9 @@
             {% else %}
             
             <h1>Se connecter</h1>
+            <p class="already-registered">
+                Vous n'avez pas encore de compte ? <a href="{{ path('app_register') }}">Enregistrez-vous ici</a>.
+            </p>
             <form method="post">
                 <div class="form-row">
                     <label for="inputEmail">Email</label>
