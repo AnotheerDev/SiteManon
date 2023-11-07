@@ -21,6 +21,10 @@
 /* view base.html.twig */
 
 
+
+
+
+
 #menu {
     z-index: 2;
     font-family: var(--font-nav);
@@ -111,8 +115,8 @@
 }
 
 .change-bg {
-    width: 620px;
-    height: 650px;
+    width: 650px;
+    height: 700px;
     transform: translate(-60%,-30%);
 }
 
@@ -289,10 +293,13 @@ p {
 .dropdown-menu {
     display: none;
     position: absolute;
-    background-color: transparent; /* Fond transparent */
+    /* background-color: transparent; */
     min-width: 160px;
     /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); Vous pouvez ajuster ou supprimer cette ombre si vous le souhaitez */
     z-index: 1;
+    /* background-color: rgba(255, 255, 255, 0.7); Fond blanc avec une opacité de 70% */
+    backdrop-filter: blur(5px); /* Applique un effet de flou */
+
 }
 
 .dropdown-menu a {
