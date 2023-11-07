@@ -15,6 +15,9 @@
     <section class="log">
         <div class="centre">
             <h1>S'enregistrer</h1>
+            <p class="already-registered">
+                Vous avez déjà un compte ? <a href="{{ path('app_login') }}">Connectez-vous ici</a>.
+            </p>
             {{ form_errors(registrationForm) }}
 
             {{ form_start(registrationForm) }}
