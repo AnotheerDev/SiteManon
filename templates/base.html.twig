@@ -62,38 +62,47 @@
 
     <body class="parallax-section">
 
-    <section id="section1">
-        <div id="menu">
-            <div id="menu-bar" onclick="menuOnClick()">
-                <div id="bar1" class="bar"></div>
-                <div id="bar2" class="bar"></div>
-                <div id="bar3" class="bar"></div>
+        <section id="section1">
+            <div id="menu">
+                <div id="menu-bar" onclick="menuOnClick()">
+                    <div id="bar1" class="bar"></div>
+                    <div id="bar2" class="bar"></div>
+                    <div id="bar3" class="bar"></div>
+                </div>
+                <nav class="nav" id="nav">
+                    <ul>
+                        <li><a href="{{ path('app_home') }}">Home</a></li>
+                        <li><a href="{{ path('app_article') }}">My work</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle">Place</a>
+                            <div class="dropdown-menu">
+                                {% for category in categories %}
+                                    <a href="{{ path('app_topics', {'categoryId': category.id}) }}">{{ category.name }}</a>
+                                {% else %}
+                                    <a href="#">No categories found</a>
+                                {% endfor %}
+                            </div>
+                        </li>
+                        <li><a href="#">Shop</a></li>
+                        <li><a href="{{ path('app_contact') }}">Contact</a></li>
+                        {% if app.user %}
+                        <li><a href="{{ path('app_logout') }}">Disconnect</a></li>
+                        {% else %}
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle">Login/Register</a>
+                            <div class="dropdown-menu">
+                                <a href="{{ path('app_login') }}">Login</a>
+                                <a href="{{ path('app_register') }}">Register</a>
+                            </div>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </nav> 
             </div>
-            <nav class="nav" id="nav">
-                <ul>
-                    <li><a href="{{ path('app_home') }}">Home</a></li>
-                    <li><a href="{{ path('app_article') }}">My work</a></li>
-                    <li><a href="{{ path('app_category') }}">Place</a></li>
-                    <li><a href="#">Shop</a></li>
-                    <li><a href="{{ path('app_contact') }}">Contact</a></li>
-                    {% if app.user %}
-                    <li><a href="{{ path('app_logout') }}">Disconnect</a></li>
-                    {% else %}
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle">Login/Register</a>
-                        <div class="dropdown-menu">
-                            <a href="{{ path('app_login') }}">Login</a>
-                            <a href="{{ path('app_register') }}">Register</a>
-                        </div>
-                    </li>
-                    {% endif %}
-                </ul>
-            </nav> 
-        </div>
-        {# Background du animé du menu #}
-        <div class="menu-bg" id="menu-bg"></div>
-        <img src="{{ asset('/img/manonManuscrit.PNG') }}" alt="logo" id="manonLogo">
-    </section>
+            {# Background du animé du menu #}
+            <div class="menu-bg" id="menu-bg"></div>
+            <img src="{{ asset('/img/manonManuscrit.PNG') }}" alt="logo" id="manonLogo">
+        </section>
 
 
     {% block body %}{% endblock %}
