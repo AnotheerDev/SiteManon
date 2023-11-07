@@ -15,6 +15,15 @@
             {% for category in categories %}
             <li>
                 <a href="{{ path('app_topics', {'categoryId': category.id}) }}">
+                    {% if category.name == 'Général' %}
+                        <img src="{{ asset('img/iconeGeneral.PNG') }}" alt="icone général" class="iconeThematique">
+                    {% elseif category.name == 'Parcours et formation' %}
+                        <img src="{{ asset('img/iconeCahier.PNG') }}" alt="icone formation" class="iconeThematique">
+                    {% elseif category.name == 'Matériel et technique' %}
+                        <img src="{{ asset('img/iconeFourniture.PNG') }}" alt="icone matériel" class="iconeThematique">
+                    {% elseif category.name == 'Inspiration et recommandation' %}
+                        <img src="{{ asset('img/iconeTableau.PNG') }}" alt="icone inspi" class="iconeThematique">
+                    {% endif %}
                     {{ category.name }}
                 </a>
             </li>
