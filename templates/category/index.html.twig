@@ -30,7 +30,7 @@
         <div class="topic"> 
             <a href="{{ path('app_posts', {'topicId': topic.id}) }}" class="topic-link"> <h3><strong>{{ topic.name }}</strong></h3>
             </a> 
-            <p>- Créé le {{ topic.dateCreation|date('d-m-Y') }}, par {{ topic.user.nickname }}</p>
+            <p>- Créé le {{ topic.dateCreation|date('d-m-Y') }}, par {{ topic.user|username_or_deleted }}</p>
         </div>
         {% endfor %}
     </div>
