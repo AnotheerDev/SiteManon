@@ -776,6 +776,10 @@ input[type="password"]{
         gap: 20px;
         align-items: center;
     }
+
+    .dropdown-menu{
+    backdrop-filter: none;
+    }
 }
 
 
