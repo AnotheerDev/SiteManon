@@ -1,135 +1,158 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        {% block javascripts_head %}
-            <script src="{{ asset ('tarteaucitron/tarteaucitron.js')}}"></script>
-            <script>
-            tarteaucitron.init({
-                "privacyUrl": "", /* Privacy policy url */
-                "bodyPosition": "bottom", /* or top to bring it as first element for accessibility */
 
-                "hashtag": "#tarteaucitron", /* Open the panel with this hashtag */
-                "cookieName": "tarteaucitron", /* Cookie name */
+<head>
+    {% block javascripts_head %}
+    <script src="{{ asset ('tarteaucitron/tarteaucitron.js')}}"></script>
+    <script>
+        tarteaucitron.init({
+            "privacyUrl": "", /* Privacy policy url */
+            "bodyPosition": "bottom", /* or top to bring it as first element for accessibility */
 
-                "orientation": "middle", /* Banner position (top - bottom - middle - popup) */
+            "hashtag": "#tarteaucitron", /* Open the panel with this hashtag */
+            "cookieName": "tarteaucitron", /* Cookie name */
 
-                "groupServices": false, /* Group services by category */
-                "showDetailsOnClick": true, /* Click to expand the description */
-                "serviceDefaultState": "wait", /* Default state (true - wait - false) */
+            "orientation": "middle", /* Banner position (top - bottom - middle - popup) */
 
-                "showAlertSmall": false, /* Show the small banner on bottom right */
-                "cookieslist": false, /* Show the cookie list */
-                
-                "showIcon": true, /* Show cookie icon to manage cookies */
-                // "iconSrc": "", /* Optional: URL or base64 encoded image */
-                "iconPosition": "BottomRight", /* Position of the icon between BottomRight, BottomLeft, TopRight and TopLeft */
+            "groupServices": false, /* Group services by category */
+            "showDetailsOnClick": true, /* Click to expand the description */
+            "serviceDefaultState": "wait", /* Default state (true - wait - false) */
 
-                "adblocker": false, /* Show a Warning if an adblocker is detected */
+            "showAlertSmall": false, /* Show the small banner on bottom right */
+            "cookieslist": false, /* Show the cookie list */
 
-                "DenyAllCta" : true, /* Show the deny all button */
-                "AcceptAllCta" : true, /* Show the accept all button when highPrivacy on */
-                "highPrivacy": true, /* HIGHLY RECOMMANDED Disable auto consent */
+            "showIcon": true, /* Show cookie icon to manage cookies */
+            // "iconSrc": "", /* Optional: URL or base64 encoded image */
+            "iconPosition": "BottomRight", /* Position of the icon between BottomRight, BottomLeft, TopRight and TopLeft */
 
-                "handleBrowserDNTRequest": false, /* If Do Not Track == 1, disallow all */
+            "adblocker": false, /* Show a Warning if an adblocker is detected */
 
-                "removeCredit": false, /* Remove credit link */
-                "moreInfoLink": true, /* Show more info link */
-                "useExternalCss": false, /* If false, the tarteaucitron.css file will be loaded */
-                "useExternalJs": false, /* If false, the tarteaucitron.services.js file will be loaded */
+            "DenyAllCta": true, /* Show the deny all button */
+            "AcceptAllCta": true, /* Show the accept all button when highPrivacy on */
+            "highPrivacy": true, /* HIGHLY RECOMMANDED Disable auto consent */
 
-                // "cookieDomain": ".my-multisite-domaine.fr", /* Shared cookie for subdomain website */
+            "handleBrowserDNTRequest": false, /* If Do Not Track == 1, disallow all */
 
-                "readmoreLink": "", /* Change the default readmore link pointing to tarteaucitron.io */
-                
-                "mandatory": true, /* Show a message about mandatory cookies */
-                "mandatoryCta": true, /* Show the disabled accept button when mandatory on */
-                
-                // "customCloserId": "" /* Optional a11y: Custom element ID used to open the panel */
-            });
-            </script>
-        {% endblock %}
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        {% block meta_description %}
-        {% endblock %}
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {% block stylesheets %}
-        <link rel="stylesheet" href=" {{ asset ('css/style.css')}}">
-        {% endblock %}
-    </head>
+            "removeCredit": false, /* Remove credit link */
+            "moreInfoLink": true, /* Show more info link */
+            "useExternalCss": false, /* If false, the tarteaucitron.css file will be loaded */
+            "useExternalJs": false, /* If false, the tarteaucitron.services.js file will be loaded */
 
-    <body class="parallax-section">
+            // "cookieDomain": ".my-multisite-domaine.fr", /* Shared cookie for subdomain website */
 
-        <section id="section1">
-            <div id="menu">
-                <div id="menu-bar" onclick="menuOnClick()">
-                    <div id="bar1" class="bar"></div>
-                    <div id="bar2" class="bar"></div>
-                    <div id="bar3" class="bar"></div>
-                </div>
-                <nav class="nav" id="nav">
-                    <ul>
-                        <li><a href="{{ path('app_home') }}">Home</a></li>
-                        <li><a href="{{ path('app_article') }}">My work</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle">Place</a>
-                            <div class="dropdown-menu">
-                                {% for category in categories %}
-                                    <a href="{{ path('app_topics', {'categoryId': category.id}) }}">{{ category.name }}</a>
-                                {% else %}
-                                    <a href="#">No categories found</a>
-                                {% endfor %}
-                            </div>
-                        </li>
-                        <li><a href="#">Shop</a></li>
-                        <li><a href="{{ path('app_contact') }}">Contact</a></li>
-                        {% if app.user %}
-                        <li><a href="{{ path('app_logout') }}">Disconnect</a></li>
-                        {% else %}
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle">Login/Register</a>
-                            <div class="dropdown-menu">
-                                <a href="{{ path('app_login') }}">Login</a>
-                                <a href="{{ path('app_register') }}">Register</a>
-                            </div>
-                        </li>
-                        {% endif %}
-                    </ul>
-                </nav> 
+            "readmoreLink": "", /* Change the default readmore link pointing to tarteaucitron.io */
+
+            "mandatory": true, /* Show a message about mandatory cookies */
+            "mandatoryCta": true, /* Show the disabled accept button when mandatory on */
+
+            // "customCloserId": "" /* Optional a11y: Custom element ID used to open the panel */
+        });
+    </script>
+    {% endblock %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block meta_description %}
+    {% endblock %}
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+    {% block stylesheets %}
+    <link rel="stylesheet" href=" {{ asset ('css/style.css')}}">
+    {% endblock %}
+</head>
+
+<body class="parallax-section">
+
+    <section id="section1">
+        <div id="menu">
+            <div id="menu-bar" onclick="menuOnClick()">
+                <div id="bar1" class="bar"></div>
+                <div id="bar2" class="bar"></div>
+                <div id="bar3" class="bar"></div>
             </div>
-            {# Background du animé du menu #}
-            <div class="menu-bg" id="menu-bg"></div>
-            <img src="{{ asset('/img/manonManuscrit.PNG') }}" alt="logo" id="manonLogo">
-        </section>
+            <nav class="nav" id="nav">
+                <ul>
+                    <li><a href="{{ path('app_home') }}">Home</a></li>
+                    <li><a href="{{ path('app_article') }}">My work</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle">Place</a>
+                        <div class="dropdown-menu">
+                            {% for category in categories %}
+                            <a href="{{ path('app_topics', {'categoryId': category.id}) }}">{{ category.name }}</a>
+                            {% else %}
+                            <a href="#">No categories found</a>
+                            {% endfor %}
+                        </div>
+                    </li>
+                    <li><a href="#">Shop</a></li>
+                    <li><a href="{{ path('app_contact') }}">Contact</a></li>
+                    {% if app.user %}
+                    <li><a href="{{ path('app_logout') }}">Disconnect</a></li>
+                    {% else %}
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle">Login/Register</a>
+                        <div class="dropdown-menu">
+                            <a href="{{ path('app_login') }}">Login</a>
+                            <a href="{{ path('app_register') }}">Register</a>
+                        </div>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+        {# Background du animé du menu #}
+        <div class="menu-bg" id="menu-bg"></div>
+        <img src="{{ asset('/img/manonManuscrit.PNG') }}" alt="logo" id="manonLogo">
+    </section>
 
 
     {% block body %}{% endblock %}
 
 
     <section id="footer">
-        <div class="socials">
-            <a href="https://www.instagram.com/manoe_rvb/" target="_blank" title="Instagram">
-                <img src="{{ asset('img/icone_insta.PNG') }}" alt="Icône Instagram" class="social-icon">
-            </a>
-            <a href="https://www.tiktok.com/@manoervb" target="_blank" title="TikTok">
-                <img src="{{ asset('img/icone_tiktok.PNG') }}" alt="Icône TikTok" class="social-icon">
-            </a>
-            <a href="https://www.tiktok.com/@manoervb" title="Contactez-moi">
-                {# il faudra mettre le lien faire contact"{{ path('contact_route_name') }}" #}
-                <img src="{{ asset('img/icone_env.PNG') }}" alt="Icône d'enveloppe" class="social-icon">
-            </a>
-            
+        <div class="footer-in">
+            <div class="sitemap">
+                <h3>Plan du site: </h3>
+                <ul>
+                    <li><a href="{{ path('app_home') }}">Home</a></li>
+                    <li><a href="{{ path('app_article') }}">My work</a></li>
+                    <li><a href="{{ path('app_topic') }}">Place</a></li>
+                    <li><a href="#">Shop</a></li>
+                    <li><a href="{{ path('app_contact') }}">Contact</a></li>
+                    <li><a href="{{ path('app_login') }}">Login</a></li>
+                    <li><a href="{{ path('app_register') }}">Register</a></li>
+                    <li><a href="{{ path('app_mentions') }}"> Mentions légales </a></li>
+                </ul>
+            </div>
+
+            <img src="{{ asset('/img/manonManuscrit.PNG') }}" alt="logo" id="manonLogo">
+
+
+            <div class="socials">
+                <h3>Réseaux sociaux: </h3>
+                <div class="social">
+                    <a href="https://www.instagram.com/manoe_rvb/" target="_blank" title="Instagram">
+                        <img src="{{ asset('img/icone_insta.PNG') }}" alt="Icône Instagram" class="social-icon">
+                    </a>
+                    <a href="https://www.tiktok.com/@manoervb" target="_blank" title="TikTok">
+                        <img src="{{ asset('img/icone_tiktok.PNG') }}" alt="Icône TikTok" class="social-icon">
+                    </a>
+                    <a href="https://www.tiktok.com/@manoervb" title="Contactez-moi">
+                        {# il faudra mettre le lien faire contact"{{ path('contact_route_name') }}" #}
+                        <img src="{{ asset('img/icone_env.PNG') }}" alt="Icône d'enveloppe" class="social-icon">
+                    </a>
+                </div>
+            </div>
         </div>
         <div class="copyright">
             <p> 2023 | MANON MANGEOL | Tous droits réservés </p>
         </div>
-    
     </section>
-    </body>
+</body>
 
-    {% block javascripts %}
-        <script src="{{ asset ('js/script.js')}}"></script>
-    {% endblock %}
+{% block javascripts %}
+<script src="{{ asset ('js/script.js')}}"></script>
+{% endblock %}
+
 </html>
