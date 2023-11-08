@@ -6,7 +6,7 @@
     <script src="{{ asset ('tarteaucitron/tarteaucitron.js')}}"></script>
     <script>
         tarteaucitron.init({
-            "privacyUrl": "", /* Privacy policy url */
+            "privacyUrl": "http://127.0.0.1:8000/mentions", /* Privacy policy url */
             "bodyPosition": "bottom", /* or top to bring it as first element for accessibility */
 
             "hashtag": "#tarteaucitron", /* Open the panel with this hashtag */
@@ -113,24 +113,19 @@
     <section id="footer">
         <div class="footer-in">
             <div class="sitemap">
-                <h3>Plan du site: </h3>
+                <h3>Plan du site : </h3>
                 <ul>
                     <li><a href="{{ path('app_home') }}">Home</a></li>
                     <li><a href="{{ path('app_article') }}">My work</a></li>
                     <li><a href="{{ path('app_topic') }}">Place</a></li>
                     <li><a href="#">Shop</a></li>
-                    <li><a href="{{ path('app_contact') }}">Contact</a></li>
                     <li><a href="{{ path('app_login') }}">Login</a></li>
                     <li><a href="{{ path('app_register') }}">Register</a></li>
-                    <li><a href="{{ path('app_mentions') }}"> Mentions légales </a></li>
                 </ul>
             </div>
 
-            <img src="{{ asset('/img/manonManuscrit.PNG') }}" alt="logo" id="manonLogo">
-
-
             <div class="socials">
-                <h3>Réseaux sociaux: </h3>
+                <h3>Réseaux sociaux : </h3>
                 <div class="social">
                     <a href="https://www.instagram.com/manoe_rvb/" target="_blank" title="Instagram">
                         <img src="{{ asset('img/icone_insta.PNG') }}" alt="Icône Instagram" class="social-icon">
@@ -144,6 +139,17 @@
                     </a>
                 </div>
             </div>
+
+            <div class="information">
+                <h3>Information :</h3>
+                <ul>
+                    <li><a href="{{ path('app_mentions') }}"> Mentions légales </a></li>
+                    <li><a href="{{ path('app_contact') }}">Contact</a></li>
+                    <li><a href="#">CGU</a></li>
+                    <li><a href="#">CGV</a></li>
+                </ul>
+            </div>
+
         </div>
         <div class="copyright">
             <p> 2023 | MANON MANGEOL | Tous droits réservés </p>
