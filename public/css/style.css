@@ -264,16 +264,17 @@ p {
 .footer-in {
     display:flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: flex-start
 }
 
-.sitemap ul,a{
+.sitemap ul, .sitemap a{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     list-style-type: none;
     text-decoration: none;
+    padding: 0;
 }
 
 .social-icon {
@@ -298,6 +299,15 @@ p {
     display: flex;
     flex-direction: row;
     justify-content: space-between; 
+}
+
+.information ul, .information a{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    list-style-type: none;
+    text-decoration: none;
+    padding: 0;
 }
 
 .copyright{
@@ -561,7 +571,8 @@ input[type="password"]{
     justify-content: space-between;
     align-items: center;
     list-style-type: none;
-    width: 650px;
+    width: 100%;
+    padding: 0%;
 }
 
 
