@@ -35,7 +35,8 @@
                 </div>
                 <div class="form-row">
                     {{ form_label(registrationForm.agreeTerms) }}
-                    {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'form-checkbox'}}) }}
+                    {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'form-checkbox'}}) }} <br>
+                    <a href="{{ path('app_mentions') }}"> Mentions légales </a>
                 </div>
 
                 <button type="submit" class="btn-blue">S'enregistrer</button>
