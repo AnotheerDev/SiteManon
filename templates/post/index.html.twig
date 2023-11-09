@@ -32,13 +32,19 @@
     {% include "_partials/_thematique.html.twig" %}
 
     <section class="middle-post">
-        {% for post in posts %}
+        {% for post in pagination %} 
         <div class="post">
             <p>{{ post.user|username_or_deleted }}:</p>
             <p>{{ post.content|raw }}</p>
             <p> Posté le {{ post.dateCreation|date('d-m-Y') }}</p>
         </div>
+        {% else %}
+        <p>Aucun post trouvé pour ce topic.</p>
         {% endfor %}
+        {# {{ dump(pagination) }} #}
+        <div class="pagination">
+            {{ knp_pagination_render(pagination) }}
+        </div>
     
         {{ form_start(form, {'method': 'post', 'attr': {'class': 'post-form'}}) }}
         {{ form_widget(form) }}
@@ -46,9 +52,6 @@
         {{ form_end(form) }}
     </section>
 
-
     {% include "_partials/_rules.html.twig" %}
 </main>
-
-
 {% endblock %}
