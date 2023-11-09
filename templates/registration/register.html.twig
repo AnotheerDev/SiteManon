@@ -20,7 +20,7 @@
             </p>
             {{ form_errors(registrationForm) }}
 
-            {{ form_start(registrationForm) }}
+            {{ form_start(registrationForm, {'attr': {'id': 'register-form'}}) }}
                 <div class="form-row">
                     {{ form_label(registrationForm.email) }}
                     {{ form_widget(registrationForm.email, {'attr': {'class': 'form-input'}}) }}
@@ -39,7 +39,7 @@
                     <a href="{{ path('app_mentions') }}"> Mentions légales </a>
                 </div>
 
-                <button type="submit" class="btn-blue">S'enregistrer</button>
+                <button type="submit" class="btn-blue g-recaptcha" data-sitekey="reCAPTCHA_site_key" data-callback='onSubmitRegister' data-action='submit'>S'enregistrer</button>
             {{ form_end(registrationForm) }}
         </div>
         <div>
