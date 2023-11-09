@@ -268,13 +268,18 @@ p {
     align-items: flex-start
 }
 
-.sitemap ul, .sitemap a{
+.sitemap ul, .sitemap a, sitemap a:link, .sitemap a:visited{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     list-style-type: none;
     text-decoration: none;
     padding: 0;
+    color: black;
+}
+
+.sitemap a:hover{
+    color: var(--third-color);
 }
 
 .social-icon {
@@ -301,13 +306,18 @@ p {
     justify-content: space-between; 
 }
 
-.information ul, .information a{
+.information ul, .information a, information a:link, .information a:visited{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     list-style-type: none;
     text-decoration: none;
     padding: 0;
+    color: black;
+}
+
+.information a:hover{
+    color: var(--first-color);
 }
 
 .copyright{
@@ -582,7 +592,7 @@ input[type="password"]{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: stretch;
+    align-items: center;
 }
 
 .post {
@@ -590,7 +600,8 @@ input[type="password"]{
     border-radius: 4px;
     padding: 15px;
     margin-bottom: 20px; /* espace entre les posts */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* ombre légère */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* ombre légère */   
+    width: 100%;
 }
 
 .post p {
@@ -637,7 +648,15 @@ input[type="password"]{
     font-family: var(--font-nav);
 }
 
+/* Style pour la pagination- */
 
+.pagination{
+    font-size: larger;
+}
+
+.pagination a {
+    text-decoration: none;
+}
 
 
 /*=============== BREAKPOINTS ===============*/
