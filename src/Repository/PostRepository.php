@@ -59,4 +59,24 @@ class PostRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
+
+    // requete pour la pagination
+    /**
+     * @return \Doctrine\ORM\Query
+     */
+    public function findPostsByTopicQuery($topicId)
+    {
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+    
+        $qb->select('p')
+        ->from('App\Entity\Post', 'p')
+        ->where('p.topicPost = :topicId')
+        ->setParameter('topicId', $topicId)
+        ->orderBy('p.dateCreation', 'DESC');
+    
+        return $qb->getQuery();
+    }
+
+
 }
