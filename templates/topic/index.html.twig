@@ -13,34 +13,38 @@
     {% include "_partials/_thematique.html.twig" %}
 
     <section class="middle-topic">
-
         <ul>
-            {% for topic in topics %}
-            <li class="topic-item" data-id="{{ topic.id }}">
-                <div class="topic"> 
-                    <a href="{{ path('app_posts', {'topicId': topic.id}) }}" class="topic-link"> <h3><strong>{{ topic.name }}</strong></h3>
-                    </a> 
-                    <p>- Créé le {{ topic.dateCreation|date('d-m-Y') }}, par {{ topic.user|username_or_deleted }}</p>
-                    {% if topic.locked %}
-                    (Verrouillé)
-                    {% endif %}
-                    {# <p><span class="click-count">Vues: {{ topic.clickCount }}</span></p> #}
-                </div>
-
-            </li>
+            {% for topic in pagination.items %}
+                <li class="topic-item" data-id="{{ topic.id }}">
+                    <div class="topic"> 
+                        <a href="{{ path('app_posts', {'topicId': topic.id}) }}" class="topic-link">
+                            <h3><strong>{{ topic.name }}</strong></h3>
+                        </a> 
+                        <p>- Créé le {{ topic.dateCreation|date('d-m-Y') }}, par {{ topic.user|username_or_deleted }}</p>
+                        {% if topic.locked %}
+                            (Verrouillé)
+                        {% endif %}
+                    </div>
+                </li>
             {% else %}
-            <li>Aucun topic trouvé pour cette catégorie.</li>
+                <li>Aucun topic trouvé pour cette catégorie.</li>
             {% endfor %}
-
-            <h3>Ajouter un nouveau topic</h3>
-            <div class="form-row">
-                {{ form_start(form) }}
-                {{ form_widget(form) }}
-                <button type="submit" class="btn-blue">Ajouter</button>
-                {{ form_end(form) }}
-            </div>
         </ul>
+    
+        {# Affichage de la pagination #}
+        <div class="pagination">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+    
+        <h3>Ajouter un nouveau topic</h3>
+        <div class="form-row">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button type="submit" class="btn-blue">Ajouter</button>
+            {{ form_end(form) }}
+        </div>
     </section>
+    
 
 
     {% include "_partials/_rules.html.twig" %}
