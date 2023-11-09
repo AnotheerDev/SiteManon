@@ -107,3 +107,16 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+// reCaptcha
+
+function onSubmitRegister(token) {
+    document.getElementById("register-form").submit(); 
+    // ID correspond à l'ID du formulaire d'inscription
+}
+
+
+function onSubmitContact(token) {
+    document.getElementById("contact-form").submit(); 
+    // ID correspond à l'ID du formulaire de contact
+}
+
