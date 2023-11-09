@@ -7,14 +7,15 @@ use App\Form\TopicType;
 use App\Repository\TopicRepository;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class TopicController extends AbstractController
 {
@@ -51,7 +52,7 @@ class TopicController extends AbstractController
     }
 
     #[Route('/topic/{categoryId}', name: 'app_topics')]
-    public function topics(int $categoryId, CategoryRepository $categoryRepository, TopicRepository $topicRepository, Request $request, EntityManagerInterface $entityManager): Response
+    public function topics(int $categoryId, CategoryRepository $categoryRepository, TopicRepository $topicRepository, Request $request, EntityManagerInterface $entityManager, PaginatorInterface $paginator): Response
     {
         // Récupérer l'objet Category depuis la base de données
         $category = $categoryRepository->find($categoryId);
@@ -65,6 +66,18 @@ class TopicController extends AbstractController
         $topic->setClickCount(0); // Définir le compteur de clics à 0 par défaut
         $form = $this->createForm(TopicType::class, $topic);
         $form->handleRequest($request);
+
+        // Récupérer les topics liés à cette catégorie avec pagination
+        $queryBuilder = $topicRepository->createQueryBuilder('t')
+        ->where('t.categoryTopic = :category')
+        ->setParameter('category', $category)
+        ->orderBy('t.dateCreation', 'DESC');
+
+        $pagination = $paginator->paginate(
+            $queryBuilder, 
+            $request->query->getInt('page', 1), // Numéro de la page en cours, 1 par défaut
+            3 // Nombre de résultats par page
+        );
     
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $this->security->getUser(); // Récupérer l'utilisateur connecté
@@ -85,6 +98,7 @@ class TopicController extends AbstractController
     
         // Passer les topics, le nom de la catégorie et le formulaire à la vue
         return $this->render('topic/index.html.twig', [
+            'pagination' => $pagination,
             'topics' => $topics,
             'categoryName' => $category->getName(), // Ici l'objet Category pour obtenir le nom
             'categories' => $categoryRepository->findAll(),
