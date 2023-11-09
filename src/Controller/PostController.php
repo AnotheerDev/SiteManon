@@ -13,6 +13,8 @@ use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Knp\Component\Pager\PaginatorInterface;
+
 
 class PostController extends AbstractController
 {
@@ -39,7 +41,8 @@ class PostController extends AbstractController
         CategoryRepository $categoryRepository,
         Request $request,
         EntityManagerInterface $entityManager,
-        Security $security
+        Security $security,
+        PaginatorInterface $paginator
     ): Response {
         $topic = $topicRepository->find($topicId);
     
@@ -51,12 +54,21 @@ class PostController extends AbstractController
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
     
+        // Obtenez la requête, pas les résultats
+        $query = $postRepository->findPostsByTopicQuery($topicId);
+    
+        // Paginer les résultats de la requête
+        $pagination = $paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1), /* numéro de la page*/
+            5 /* limite par page */
+        );
+    
         if ($form->isSubmitted() && $form->isValid()) {
-            $user = $this->security->getUser(); // Récupérer l'utilisateur connecté
-            $post->setUser($user); // Associer l'utilisateur au topic
+            $user = $security->getUser(); // Récupérer l'utilisateur connecté
+            $post->setUser($user); // Associer l'utilisateur au post
             $post->setTopicPost($topic);
             $post->setDateCreation(new \DateTime()); // Définir la date de création
-            // Set other required fields for the Post entity...
     
             $entityManager->persist($post);
             $entityManager->flush();
@@ -64,17 +76,11 @@ class PostController extends AbstractController
             return $this->redirectToRoute('app_posts', ['topicId' => $topicId]);
         }
     
-        $posts = $postRepository->findPostsByTopic($topicId);
-    
         return $this->render('post/index.html.twig', [
-            'posts' => $posts,
+            'pagination' => $pagination, // Passe la pagination à la vue
             'topicName' => $topic->getName(),
             'categories' => $categoryRepository->findAll(),
             'form' => $form->createView(),
         ]);
     }
-    
-    
-    
-    
 }
