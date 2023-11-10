@@ -75,4 +75,17 @@ class TopicRepository extends ServiceEntityRepository
     }
     
 
+    public function findLatestTopics($limit = 3)
+    {
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+        
+        $qb->select('t')
+            ->from('App\Entity\Topic', 't')
+            ->orderBy('t.dateCreation', 'DESC')
+            ->setMaxResults($limit);
+    
+        return $qb->getQuery()->getResult();
+    }
+    
 }
