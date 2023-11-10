@@ -17,7 +17,8 @@ class QuoteType extends AbstractType
             ->add('content', TextareaType::class, [
                 'label' => false,
                 'attr' => [
-                    'placeholder' => 'Entrez votre commentaire'
+                    'placeholder' => 'Entrez votre commentaire',
+                    'class' => 'mce', // cette classe est unique et utilisée uniquement pour TinyMCE
                 ]
                 ])
             // ->add('user')
