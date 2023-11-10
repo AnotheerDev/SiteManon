@@ -34,6 +34,9 @@
                     <label for="inputPassword">Mot de passe</label>
                     <input type="password" name="password" id="inputPassword" class="form-input" autocomplete="current-password" required>
                 </div>
+                <div>
+                    <p>Mot de passe oublié ? <a href="{{ path('app_forgot_password_request') }}">Cliquez ici</a></p>
+                </div>
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                 <button type="submit" class="btn-blue">Se connecter</button>
             </form>
