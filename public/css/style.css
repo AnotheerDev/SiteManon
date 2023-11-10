@@ -594,6 +594,11 @@ input[type="password"]{
     padding: 0%;
 }
 
+.middle-topic a {
+    text-decoration: none;
+    color: black;
+}
+
 
 /* FORUM POST
  */
@@ -645,6 +650,7 @@ input[type="password"]{
     display: flex;
     align-items: center; /* Alignement vertical */
     text-decoration: none; /* Optionnel: enlève le soulignement du lien */
+    color: #000000;
 }
 
 .rules-section{
@@ -655,6 +661,11 @@ input[type="password"]{
 
 .middle-section h3{
     font-family: var(--font-nav);
+}
+
+.middle-section a{
+    text-decoration: none;
+    color: black;
 }
 
 /* Style pour la pagination- */
@@ -672,6 +683,12 @@ input[type="password"]{
     font-family: var(--font-text);
     color: red;
 }
+
+.dropdown-link:hover {
+    color: var(--third-color);
+}
+
+
 
 
 /*=============== BREAKPOINTS ===============*/
@@ -696,6 +713,10 @@ input[type="password"]{
     #sectionCarousel{
         margin-top: 70px;
     }
+
+    /* .dropdown-menu:hover {
+        color: var(--third-color);
+    } */
 }
 
 
