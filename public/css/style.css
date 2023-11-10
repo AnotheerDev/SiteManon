@@ -399,6 +399,14 @@ p {
     justify-content: space-between;
     padding-top: 10px;
 }
+.comment a {
+    text-decoration: none;
+    color: black;
+}
+
+.comment a:hover {
+    color: var(--first-color);
+}
 
 .image-reduite {
     box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
@@ -435,6 +443,7 @@ p {
     display: flex;
     flex-direction: row;
     align-items: center;
+    height: 65vh;
 }
 
 /* Style pour les messages d'erreur */
@@ -656,6 +665,12 @@ input[type="password"]{
 
 .pagination a {
     text-decoration: none;
+}
+
+
+.alert-danger {
+    font-family: var(--font-text);
+    color: red;
 }
 
 
