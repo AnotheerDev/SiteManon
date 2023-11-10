@@ -30,8 +30,12 @@
                     {{ form_widget(registrationForm.nickname, {'attr': {'class': 'form-input'}}) }}
                 </div>
                 <div class="form-row">
-                    {{ form_label(registrationForm.plainPassword, 'Password') }}
-                    {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-input'}}) }}
+                    {{ form_label(registrationForm.plainPassword.first) }}
+                    {{ form_widget(registrationForm.plainPassword.first, {'attr': {'class': 'form-input'}}) }}
+                </div>
+                <div class="form-row">
+                    {{ form_label(registrationForm.plainPassword.second) }}
+                    {{ form_widget(registrationForm.plainPassword.second, {'attr': {'class': 'form-input'}}) }}
                 </div>
                 <div class="form-row">
                     {{ form_label(registrationForm.agreeTerms) }}
