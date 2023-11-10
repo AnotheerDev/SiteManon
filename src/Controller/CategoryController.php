@@ -16,11 +16,13 @@ class CategoryController extends AbstractController
     {
         $categories = $categoryRepository->findAllCategories();
         $mostClickedTopics = $topicRepository->findMostClickedTopics();
+        $topics = $topicRepository->findLatestTopics();
 
 
         return $this->render('category/index.html.twig', [
             'categories' => $categories,
             'mostClickedTopics' => $mostClickedTopics,
+            'topics' => $topics,
         ]);
     }
 }
