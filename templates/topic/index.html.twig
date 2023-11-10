@@ -36,12 +36,14 @@
             {{ knp_pagination_render(pagination) }}
         </div>
     
-        <h3>Ajouter un nouveau topic</h3>
-        <div class="form-row">
-            {{ form_start(form) }}
-            {{ form_widget(form) }}
-            <button type="submit" class="btn-blue">Ajouter</button>
-            {{ form_end(form) }}
+        <div>
+            <h3>Ajouter un nouveau topic</h3>
+            <div class="form-row">
+                {{ form_start(form) }}
+                {{ form_widget(form, {'attr': {'class': 'form-input'}}) }}
+                <button type="submit" class="btn-blue">Ajouter</button>
+                {{ form_end(form) }}
+            </div>
         </div>
     </section>
     
