@@ -3,48 +3,67 @@
 {% block meta_description %}
 <meta name="description" content="blog where the artist Manon Mangeol can expose her work">
 {% endblock %}
+{% block javascripts %}
+<script src="https://cdn.tiny.cloud/1/wf9m32hoge9fgzzk0h8hap6mwf2v3fiz60uexkh7eh1jqe8t/tinymce/5/tinymce.min.js"
+  referrerpolicy="origin"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    tinymce.init({
+      selector: 'textarea.mce', //sélecteur correspond à textarea
+      language: 'fr_FR',
+      setup: function (editor) {
+        editor.on('change', function () {
+          editor.save(); // Synchronise le contenu de TinyMCE avec le textarea à chaque changement
+        });
+      }
+    });
 
+    var form = document.querySelector('.post-form');
+    form.addEventListener('submit', function (e) {
+      tinymce.triggerSave(); // Synchronise le contenu de TinyMCE avec le textarea avant la soumission
+    });
+  });
+</script>
+
+{% endblock %}
 {% block title %}{{ article.getTitle }}{% endblock %}
 
 {% block body %}
 
-<article>
-  <header>
-    <h1>{{ article.getTitle }}</h1>
-
-  </header>
-  <div>
-    {{ article.getContent|raw }}
+<div class="single-article">
+  <h2>{{ article.title }}</h2>
+  <div class="article">
+    <p>{{ article.content|raw }}</p>
+    <img src="{{ asset('img/' ~ article.photo) }}" alt="Illustration" class="image-reduite"
+      onclick="openModal(this.src)">
   </div>
-  <div>
-    <img src="{{ asset('img/' ~ article.getPhoto) }}" alt="Illu" class="image-reduite" onclick="openModal(this.src)">
-  </div>
-  <div>
-    <p>Posté le {{ article.getDateCreation|date('d/m/Y H:i') }}, Par {{ article.getUser.getNickname }}</p>
+  <div class="foot-article">
+    <p>Posté le : {{ article.dateCreation|date('d-m-Y') }}</p>
+    <p>Par : {{ article.getUser.getNickname }}</p>
   </div>
 
-</article>
+  <div class="comment-article">
 
-<section>
-  {{ form_start(form) }}
-  {{ form_widget(form) }}
-  <button type="submit">Commenter</button>
-  {{ form_end(form) }}
-</section>
+    <h3>Commentaires:</h3>
+    {% for quote in article.getQuoteArticle %}
+    <div>
+      <strong>{{ quote.getUser.getNickname }}</strong>
+      <p>{{ quote.getContent }}</p>
+      <p>Posté le {{ quote.getDateCreation|date('d/m/Y') }}</p>
+    </div>
+    {% endfor %}
 
-<h3>Commentaires:</h3>
-{% for quote in article.getQuoteArticle %}
-<div>
-  <strong>{{ quote.getUser.getNickname }}</strong>
-  <p>{{ quote.getContent }}</p>
-  <p>Posté le {{ quote.getDateCreation|date('d/m/Y') }}</p>
-</div>
-{% endfor %}
+      {{ form_start(form) }}
+      {{ form_widget(form) }}
+      <button type="submit" class="btn-blue">Commenter</button>
+      {{ form_end(form) }}
 
-<!-- Modal -->
-<div id="myModal" class="modal">
-  <span class="close" onclick="closeModal()">&times;</span>
-  <img class="modal-content" id="img01" alt="Illu">
-</div>
-{% endblock %}
+  </div>
+
+  <!-- Modal -->
+  <div id="myModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="img01" alt="Illu">
+  </div>
+  {% endblock %}
 
