@@ -778,7 +778,45 @@ input[type="password"]{
     margin: 10px 0; /* Espacement entre les paragraphes */
 }
 
-/* Vous pouvez ajouter plus de styles ici selon vos besoins */
+
+.cart-wrapper {
+    max-width: 800px;
+    margin: auto;
+}
+
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cart-table th, .cart-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.cart-table th {
+    background-color: #f7f7f7;
+}
+
+.cart-total {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.cart-checkout button {
+    padding: 10px 20px;
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cart-checkout button:hover {
+    background-color: #4cae4c;
+}
+
 
 
 /*=============== BREAKPOINTS ===============*/
