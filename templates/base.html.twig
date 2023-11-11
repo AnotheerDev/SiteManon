@@ -85,7 +85,7 @@
                             {% endfor %}
                         </div>
                     </li>
-                    <li><a href="#">Shop</a></li>
+                    <li><a href="{{ path('app_product') }}">Shop</a></li>
                     <li><a href="{{ path('app_contact') }}">Contact</a></li>
                     {% if app.user %}
                     <li><a href="{{ path('app_logout') }}">Disconnect</a></li>
