@@ -45,4 +45,16 @@ class ProductRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+    public function findAllProducts(): array
+    {
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+
+        $qb->select('p')
+        ->from('App\Entity\Product', 'p')
+        ->orderBy('p.name', 'ASC');
+
+        return $qb->getQuery()->getResult();
+    }
 }
