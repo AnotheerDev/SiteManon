@@ -37,9 +37,17 @@ class Commande
     #[ORM\OneToMany(mappedBy: 'commande', targetEntity: Cart::class)]
     private Collection $carts;
 
+    #[ORM\Column(length: 255)]
+    private ?string $adresse = null;
+
+    #[ORM\Column(length: 10)]
+    private ?string $codePost = null;
+
     public function __construct()
     {
         $this->carts = new ArrayCollection();
+        $this->dateCommande = new \DateTime(); // Cela définira la date à "maintenant"
+        $this->reference = $this->generateRandomReference(); // Générer une référence aléatoire
     }
 
     public function getId(): ?int
@@ -147,5 +155,39 @@ class Commande
         }
 
         return $this;
+    }
+
+    public function getAdresse(): ?string
+    {
+        return $this->adresse;
+    }
+
+    public function setAdresse(string $adresse): static
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    public function getCodePost(): ?string
+    {
+        return $this->codePost;
+    }
+
+    public function setCodePost(string $codePost): static
+    {
+        $this->codePost = $codePost;
+
+        return $this;
+    }
+
+    private function generateRandomReference(): string
+    {
+        return str_pad(mt_rand(0, 999999), 6, '0', STR_PAD_LEFT);
+    }
+
+    public function __toString(): string
+    {
+        return $this->getReference();
     }
 }
