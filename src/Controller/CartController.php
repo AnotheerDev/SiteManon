@@ -215,15 +215,24 @@ class CartController extends AbstractController
 
 
     #[Route('/checkout/success/{id}', name: 'checkout_success')]
-    public function checkoutSuccess($id, EntityManagerInterface $entityManager): Response
-    {
-        // Logique pour traiter une commande réussie, par exemple:
-        // - Trouver la commande par son ID
-        // - Confirmer la commande
-        // - Envoyer un email de confirmation
+    public function checkoutSuccess($id, EntityManagerInterface $entityManager): Response {
+        // Récupérer la commande à partir de l'ID
+        $commande = $entityManager->getRepository(Commande::class)->find($id);
+    
+        // Vérifier si la commande existe
+        if (!$commande) {
+            throw $this->createNotFoundException('Commande non trouvée.');
+        }
+    
+        $total = 0;
+        foreach ($commande->getCarts() as $cart) {
+            $total += $cart->getProduct()->getPrice() * $cart->getQuantity();
+        }
 
-
+        // Passer l'entité commande au template
         return $this->render('checkout/success.html.twig', [
+            'commande' => $commande,
+            'total' => $total
         ]);
     }
 
