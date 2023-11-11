@@ -19,21 +19,27 @@
 
 <section class="shop">
     {% for product in products %}
-    <div class="product">
-        <h3>{{ product.name }}</h3>
-        {% if product.photoProduct|length > 0 %}
-            {% for image in product.photoProduct %}
-                <img src="{{ asset('img/' ~ image.getName()) }}" alt="{{ product.name }}" class="photo-produit">
-            {% endfor %}
-        {% else %}
-            <p>No image available</p>
-        {% endif %}
-        <p>{{ product.description|raw }}</p>
-        <p>{{ product.price }} €</p>
-    </div>
-{% endfor %}
-
+        <div class="product">
+            <h3>{{ product.name }}</h3>
+            <div class="product-image">
+                {% if product.photoProduct|length > 0 %}
+                    {% for image in product.photoProduct %}
+                        <img src="{{ asset('img/' ~ image.getName()) }}" alt="{{ product.name }}" class="photo-produit">
+                    {% endfor %}
+                {% else %}
+                    <p>No image available</p>
+                {% endif %}
+            </div>
+            <p>{{ product.description|raw }}</p>
+            <p>{{ product.price }} €</p>
+            <form action="{{ path('cart_add', {'id': product.id}) }}" method="post">
+                <input type="number" name="quantity" value="1" min="1" max="10" class="quantity-input">
+                <button type="submit" class="add-to-cart">Ajouter au panier</button>
+            </form>
+        </div>
+    {% endfor %}
 </section>
+
 
 
 
