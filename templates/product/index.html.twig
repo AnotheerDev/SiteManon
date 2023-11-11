@@ -7,18 +7,35 @@
 {% block title %}Hello ProductController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+{# <div id="filter-buttons">
+    <button class="filter-button" data-classification="all">All</button>
+    <button class="filter-button" data-classification="Peinture">Peinture</button>
+    <button class="filter-button" data-classification="Photo">Photo</button>
+    <button class="filter-button" data-classification="Crochet">Crochet</button>
+    <button class="filter-button" data-classification="Installation">Installation</button>
+    <button class="filter-button" data-classification="Linogravure">Linogravure</button>
+</div> #}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/laragon/www/SiteManon/src/Controller/ProductController.php'|file_link(0) }}">src/Controller/ProductController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/laragon/www/SiteManon/templates/product/index.html.twig'|file_link(0) }}">templates/product/index.html.twig</a></code></li>
-    </ul>
-</div>
+<section class="shop">
+    {% for product in products %}
+    <div class="product">
+        <h3>{{ product.name }}</h3>
+        {% if product.photoProduct|length > 0 %}
+            {% for image in product.photoProduct %}
+                <img src="{{ asset('img/' ~ image.getName()) }}" alt="{{ product.name }}" class="photo-produit">
+            {% endfor %}
+        {% else %}
+            <p>No image available</p>
+        {% endif %}
+        <p>{{ product.description|raw }}</p>
+        <p>{{ product.price }} €</p>
+    </div>
+{% endfor %}
+
+</section>
+
+
+
+
 {% endblock %}
