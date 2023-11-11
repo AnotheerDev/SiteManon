@@ -739,6 +739,46 @@ input[type="password"]{
 }
 
 
+/* Style pour le shop */
+.shop {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+
+.product {
+    border: 1px solid #ddd; /* Bordure légère */
+    border-radius: 8px; /* Coins arrondis */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre subtile */
+    padding: 20px; /* Espacement à l'intérieur de la carte */
+    margin: 20px 0; /* Espacement entre les cartes */
+    background-color: white; /* Couleur de fond */
+    text-align: center; /* Centrer le texte et les éléments à l'intérieur */
+}
+
+.photo-produit {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px; /* Coins légèrement arrondis pour l'image */
+    margin-bottom: 15px; /* Espacement entre l'image et le texte en dessous */
+}
+
+.product h3 {
+    margin-top: 0; /* Enlève la marge supérieure pour le titre */
+    color: #333; /* Couleur du texte pour le titre */
+    font-size: 1.2em; /* Taille de la police pour le titre */
+}
+
+.product p {
+    color: #666; /* Couleur du texte pour le paragraphe */
+    margin: 10px 0; /* Espacement entre les paragraphes */
+}
+
+/* Vous pouvez ajouter plus de styles ici selon vos besoins */
 
 
 /*=============== BREAKPOINTS ===============*/
