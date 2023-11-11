@@ -42,6 +42,11 @@
         <div class="cart-total">
             <strong>Total : {{ total|number_format(2, '.', ',') }} €</strong>
         </div>
+
+        <div class="cart-checkout">
+            <a href="{{ path('cart_checkout') }}" class="btn">Finaliser la commande</a>
+        </div>
+
     {% endif %}
 </div>
 {% endblock %}
