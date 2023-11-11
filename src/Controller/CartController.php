@@ -28,41 +28,48 @@ class CartController extends AbstractController
         ]);
     }
 
+
+
     #[Route('/add/{id}', name: 'cart_add')]
-    public function addToCart(int $id, SessionInterface $session, ProductRepository $productRepository): Response
+    public function addToCart(int $id, Request $request, SessionInterface $session, ProductRepository $productRepository): Response
     {
         // Récupérer le produit par son id
         $product = $productRepository->find($id);
-
+    
         // Si le produit n'existe pas, renvoyer une erreur ou rediriger
         if (!$product) {
             throw $this->createNotFoundException('Le produit demandé n\'existe pas.');
         }
-
+    
+        // Récupérer la quantité du formulaire, avec une valeur par défaut de 1 si aucune quantité n'est fournie
+        $quantity = $request->request->getInt('quantity', 1);
+    
         // Obtenir le panier actuel de la session, ou initialiser à un tableau vide si aucun panier n'existe
         $cart = $session->get('cart', []);
-
+    
         // Vérifier si le produit est déjà dans le panier
-        if (!empty($cart[$id])) {
+        if (isset($cart[$id])) {
             // Augmenter la quantité si le produit est déjà présent
-            $cart[$id]['quantity']++;
+            $cart[$id]['quantity'] += $quantity;
         } else {
-            // Ajouter le produit avec une quantité de 1 s'il n'est pas déjà dans le panier
+            // Ajouter le produit avec la quantité spécifiée s'il n'est pas déjà dans le panier
             $cart[$id] = [
-                'quantity' => 1,
+                'quantity' => $quantity,
                 'product' => $product
             ];
         }
-
+    
         // Enregistrer le panier mis à jour dans la session
         $session->set('cart', $cart);
-
+    
         // Ajouter un message flash pour notifier l'utilisateur
         $this->addFlash('success', 'Produit ajouté au panier.');
-
-        // Rediriger vers la page précédente ou vers le panier
+    
+        // Rediriger vers la page du panier
         return $this->redirectToRoute('cart');
     }
+    
+
 
     #[Route('/cart/update/{id}', name: 'update_cart')]
     public function updateCart(int $id, Request $request, SessionInterface $session): Response
@@ -100,6 +107,8 @@ class CartController extends AbstractController
         return $this->redirectToRoute('cart');
     }
 
+
+    
     #[Route('/cart/remove/{id}', name: 'remove_from_cart')]
     public function removeFromCart(int $id, SessionInterface $session): Response
     {
