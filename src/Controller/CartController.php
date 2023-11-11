@@ -2,11 +2,15 @@
 
 namespace App\Controller;
 
+use App\Entity\Commande;
+use App\Entity\Cart;
+use App\Form\CommandeType;
 use App\Repository\ProductRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CartController extends AbstractController
@@ -125,4 +129,57 @@ class CartController extends AbstractController
         return $this->redirectToRoute('cart');
     }
 
+
+
+    #[Route('/cart/checkout', name: 'cart_checkout')]
+    public function checkout(
+        Request $request,
+        SessionInterface $session,
+        ProductRepository $productRepository,
+        EntityManagerInterface $entityManager
+    ): Response {
+        // Vérifiez que le panier n'est pas vide
+        $cart = $session->get('cart', []);
+        if (empty($cart)) {
+            $this->addFlash('warning', 'Votre panier est vide.');
+            return $this->redirectToRoute('shop'); // Rediriger vers la page de la boutique
+        }
+
+        $commande = new Commande();
+        $form = $this->createForm(CommandeType::class, $commande);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Créer et ajouter les objets Cart à la commande
+            foreach ($cart as $id => $item) {
+                $cartItem = new Cart();
+                $product = $productRepository->find($id);
+                if (!$product) {
+                    // Gérer l'erreur si le produit n'est pas trouvé
+                    continue; // ou traiter l'erreur comme il convient
+                }
+                $cartItem->setProduct($product);
+                $cartItem->setQuantity($item['quantity']);
+                $cartItem->setCommande($commande);
+                $entityManager->persist($cartItem);
+            }
+            $entityManager->persist($commande);
+            $entityManager->flush();
+
+            // Nettoyer le panier de la session
+            $session->remove('cart');
+
+            // Ajouter un message flash pour notifier l'utilisateur
+            $this->addFlash('success', 'Votre commande a été passée avec succès.');
+
+            // Rediriger vers la page de Stripe pour le paiement
+            return $this->redirectToRoute('order_confirmation', [
+                'id' => $commande->getId(),
+            ]);
+        }
+
+        // Afficher le formulaire si celui-ci n'a pas encore été soumis, ou s'il n'est pas valide
+        return $this->render('cart/checkout.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
 }
