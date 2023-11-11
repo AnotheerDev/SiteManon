@@ -817,6 +817,25 @@ input[type="password"]{
     background-color: #4cae4c;
 }
 
+.cart-checkout {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.cart-checkout .btn {
+    padding: 10px 20px;
+    color: white;
+    background-color: #007bff;
+    border-color: #007bff;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.cart-checkout .btn:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
 
 
 /*=============== BREAKPOINTS ===============*/
