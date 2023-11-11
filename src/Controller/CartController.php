@@ -2,15 +2,16 @@
 
 namespace App\Controller;
 
-use App\Entity\Commande;
 use App\Entity\Cart;
+use App\Entity\Commande;
 use App\Form\CommandeType;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CartController extends AbstractController
@@ -142,7 +143,7 @@ class CartController extends AbstractController
         $cart = $session->get('cart', []);
         if (empty($cart)) {
             $this->addFlash('warning', 'Votre panier est vide.');
-            return $this->redirectToRoute('shop'); // Rediriger vers la page de la boutique
+            return $this->redirectToRoute('app_product'); // Rediriger vers la page de la boutique
         }
 
         $commande = new Commande();
@@ -168,18 +169,72 @@ class CartController extends AbstractController
             // Nettoyer le panier de la session
             $session->remove('cart');
 
-            // Ajouter un message flash pour notifier l'utilisateur
-            $this->addFlash('success', 'Votre commande a été passée avec succès.');
+            // Permet de récupérer les produits de la commande et les afficher dans la page de confirmation pour stripe
+            $lineItems = [];
+            foreach ($cart as $id => $item) {
+                $product = $productRepository->find($id);
+                if (!$product) {
+                    // Si le produit n'est pas trouvé, vous pourriez vouloir gérer cette erreur.
+                    continue;
+                }
+                $lineItems[] = [
+                    'price_data' => [
+                        'currency' => 'eur',
+                        'unit_amount' => $product->getPrice() * 100, // Le prix doit être en centimes pour Stripe
+                        'product_data' => [
+                            'name' => $product->getName(),
+                            // Vous pouvez ajouter d'autres détails du produit ici si nécessaire.
+                        ],
+                    ],
+                    'quantity' => $item['quantity'],
+                ];
+            }
+            
+            // ENLEVER LE CODE CI-DESSOUS AVANT DE PUSH SUR GITHUB
+            \Stripe\Stripe::setApiKey('GO SECRET KEY ON STRIPE');
 
-            // Rediriger vers la page de Stripe pour le paiement
-            return $this->redirectToRoute('order_confirmation', [
-                'id' => $commande->getId(),
+            $checkout_session = \Stripe\Checkout\Session::create([
+                'payment_method_types' => ['card'],
+                'line_items' => $lineItems,
+                'mode' => 'payment',
+                'success_url' => $this->generateUrl('checkout_success', ['id' => $commande->getId()], UrlGeneratorInterface::ABSOLUTE_URL),
+                'cancel_url' => $this->generateUrl('checkout_cancel', [], UrlGeneratorInterface::ABSOLUTE_URL),
             ]);
+            
+        
+            // Redirigez l'utilisateur vers la session Stripe Checkout
+            return $this->redirect($checkout_session->url);
         }
 
         // Afficher le formulaire si celui-ci n'a pas encore été soumis, ou s'il n'est pas valide
         return $this->render('cart/checkout.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+
+
+    #[Route('/checkout/success/{id}', name: 'checkout_success')]
+    public function checkoutSuccess($id, EntityManagerInterface $entityManager): Response
+    {
+        // Logique pour traiter une commande réussie, par exemple:
+        // - Trouver la commande par son ID
+        // - Confirmer la commande
+        // - Envoyer un email de confirmation
+
+
+        return $this->render('checkout/success.html.twig', [
+        ]);
+    }
+
+
+
+    #[Route('/checkout/cancel', name: 'checkout_cancel')]
+    public function checkoutCancel(): Response
+    {
+        // Logique pour traiter une commande annulée
+        $this->addFlash('error', 'Le paiement a été annulé.');
+
+        return $this->redirectToRoute('cart');
     }
 }
