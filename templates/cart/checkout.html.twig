@@ -1,0 +1,13 @@
+{# templates/cart/checkout.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Finaliser la commande{% endblock %}
+
+{% block body %}
+    <h1>Finaliser la commande</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button type="submit" class="btn btn-success">Confirmer la commande</button>
+    {{ form_end(form) }}
+{% endblock %}
