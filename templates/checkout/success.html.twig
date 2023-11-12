@@ -7,28 +7,59 @@
         <h1>Commande Réussie</h1>
         <p>Merci pour votre commande !</p>
 
-        {# Afficher les informations de la commande #}
         <div class="order-details">
             <h2>Détails de la Commande</h2>
-            <p>Commande numéro : {{ commande.reference }}</p>
-            <p>Date de commande : {{ commande.dateCommande|date('d-m-Y') }}</p>
-            <p>Nom : {{ commande.lastName }}</p>
-            <p>Prénom : {{ commande.firstName }}</p>
-            <p>Email : {{ commande.email }}</p>
-            <p>Adresse : {{ commande.adresse }}, {{ commande.codePost }}</p>
-            
-            <h3>Articles dans la Commande :</h3>
-            <ul>
-                {% for cart in commande.carts %}
-                    <li>{{ cart.product.name }} - Quantité : {{ cart.quantity }} - Prix : {{ cart.product.price}}</li>
-                {% endfor %}
-            </ul>
-            
+            <table>
+                <tr>
+                    <th>Commande numéro</th>
+                    <td>{{ commande.reference }}</td>
+                </tr>
+                <tr>
+                    <th>Date de commande</th>
+                    <td>{{ commande.dateCommande|date('d-m-Y') }}</td>
+                </tr>
+                <tr>
+                    <th>Nom</th>
+                    <td>{{ commande.lastName }}</td>
+                </tr>
+                <tr>
+                    <th>Prénom</th>
+                    <td>{{ commande.firstName }}</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>{{ commande.email }}</td>
+                </tr>
+                <tr>
+                    <th>Adresse</th>
+                    <td>{{ commande.adresse }}, {{ commande.codePost }}</td>
+                </tr>
+            </table>
 
-            <p>Total : {{ total|number_format(2, '.', ',') }} €</p>
+            <h3>Articles dans la Commande :</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Produit</th>
+                        <th>Quantité</th>
+                        <th>Prix Unit.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cart in commande.carts %}
+                        <tr>
+                            <td>{{ cart.product.name }}</td>
+                            <td>{{ cart.quantity }}</td>
+                            <td>{{ cart.product.price|number_format(2, '.', ',') }} €</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <p><strong>Total : {{ total|number_format(2, '.', ',') }} €</strong></p>
         </div>
 
-        {# Lien pour télécharger le PDF #}
+        {# Lien pour télécharger le PDF (désactivé pour le moment) #}
         {# <div class="download-pdf">
             <a href="{{ path('download_order_pdf', {'id': commande.id}) }}" class="btn btn-primary">Télécharger le récapitulatif en PDF</a>
         </div> #}
