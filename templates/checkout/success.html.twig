@@ -59,9 +59,8 @@
             <p><strong>Total : {{ total|number_format(2, '.', ',') }} €</strong></p>
         </div>
 
-        {# Lien pour télécharger le PDF (désactivé pour le moment) #}
-        {# <div class="download-pdf">
-            <a href="{{ path('download_order_pdf', {'id': commande.id}) }}" class="btn btn-primary">Télécharger le récapitulatif en PDF</a>
-        </div> #}
+        <div class="download-pdf">
+            <a href="{{ path('download_order_pdf', {'id': commande.id}) }}" class="btn-blue">Télécharger le récapitulatif en PDF</a>
+        </div>
     </div>
 {% endblock %}
