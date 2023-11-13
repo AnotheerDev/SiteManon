@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Commande {{ commande.reference }}</title>
+</head>
+<body>
+    <h1>Détails de la Commande {{ commande.reference }}</h1>
+
+    <div class="order-details">
+      <h2>Détails de la Commande</h2>
+      <table>
+          <tr>
+              <th>Commande numéro</th>
+              <td>{{ commande.reference }}</td>
+          </tr>
+          <tr>
+              <th>Date de commande</th>
+              <td>{{ commande.dateCommande|date('d-m-Y') }}</td>
+          </tr>
+          <tr>
+              <th>Nom</th>
+              <td>{{ commande.lastName }}</td>
+          </tr>
+          <tr>
+              <th>Prénom</th>
+              <td>{{ commande.firstName }}</td>
+          </tr>
+          <tr>
+              <th>Email</th>
+              <td>{{ commande.email }}</td>
+          </tr>
+          <tr>
+              <th>Adresse</th>
+              <td>{{ commande.adresse }}, {{ commande.codePost }}</td>
+          </tr>
+      </table>
+
+      <h3>Articles dans la Commande :</h3>
+      <table>
+          <thead>
+              <tr>
+                  <th>Produit</th>
+                  <th>Quantité</th>
+                  <th>Prix Unit.</th>
+              </tr>
+          </thead>
+          <tbody>
+              {% for cart in commande.carts %}
+                  <tr>
+                      <td>{{ cart.product.name }}</td>
+                      <td>{{ cart.quantity }}</td>
+                      <td>{{ cart.product.price|number_format(2, '.', ',') }} €</td>
+                  </tr>
+              {% endfor %}
+          </tbody>
+      </table>
+
+      <p><strong>Total : {{ total|number_format(2, '.', ',') }} €</strong></p>
+  </div>
+</html>
