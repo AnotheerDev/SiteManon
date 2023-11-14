@@ -63,14 +63,22 @@ class TopicRepository extends ServiceEntityRepository
 
     public function findMostClickedTopics($limit = 3)
     {
+        // Récupération de l'EntityManager de Doctrine
         $em = $this->getEntityManager();
+        // Création d'un QueryBuilder pour construire la requête
         $qb = $em->createQueryBuilder();
     
+        // Construction de la requête DQL
+        // Sélection de l'entité 'Topic' en tant que 't'
         $qb->select('t')
+            // Définition de l'entité source 'Topic' avec l'alias 't'
             ->from('App\Entity\Topic', 't')
+            // Tri des résultats par 'clickCount' en ordre décroissant
             ->orderBy('t.clickCount', 'DESC')
+            // Limitation du nombre de résultats retournés
             ->setMaxResults($limit);
     
+        // Exécution de la requête et retour des résultats
         return $qb->getQuery()->getResult();
     }
     
