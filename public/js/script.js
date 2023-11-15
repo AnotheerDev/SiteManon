@@ -120,3 +120,10 @@ function onSubmitContact(token) {
     // ID correspond à l'ID du formulaire de contact
 }
 
+
+    var alerts = document.querySelectorAll(".alert");
+        alerts.forEach(alert => {
+            setTimeout(function() {
+                alert.style.display = "none";
+            }, 5000);
+        })
