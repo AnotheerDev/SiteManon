@@ -875,7 +875,6 @@ input[type="password"]{
 
 @media screen and (min-width: 560px){
     #illustrationBureau{
-
         height: 500px;
         width: 550px;
     }
@@ -889,6 +888,14 @@ input[type="password"]{
         flex-direction: column-reverse;
         gap: 20px;
         align-items: center;
+    }
+    
+    #sectionAbout{
+        height: 70vh;
+    }
+
+    #sectionHome{
+        height: 100vh;
     }
 }
 
@@ -959,7 +966,6 @@ input[type="password"]{
     }
 
     #sectionAbout{
-        height: 100vh;
         display: flex;
         justify-content: space-evenly;
     }
@@ -1045,7 +1051,6 @@ input[type="password"]{
     }
 
     #sectionAbout{
-        height: 100vh;
         display: flex;
         justify-content: space-evenly;
     }
