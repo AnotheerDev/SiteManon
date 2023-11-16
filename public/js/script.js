@@ -120,10 +120,12 @@ function onSubmitContact(token) {
     // ID correspond à l'ID du formulaire de contact
 }
 
-
+//  Suppression des notifications d'alerte
+document.addEventListener('DOMContentLoaded', function () {
     var alerts = document.querySelectorAll(".alert");
-        alerts.forEach(alert => {
-            setTimeout(function() {
-                alert.style.display = "none";
-            }, 5000);
-        })
+    alerts.forEach(function(alert) {
+        setTimeout(function() {
+            alert.remove(); // Supprime l'élément du DOM
+        }, 5000);
+    });
+});
