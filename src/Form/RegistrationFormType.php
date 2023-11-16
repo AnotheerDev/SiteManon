@@ -25,35 +25,35 @@ class RegistrationFormType extends AbstractType
             ->add('email', EmailType::class)
             ->add('nickname', TextType::class)
             ->add('agreeTerms', CheckboxType::class, [
-                'label' => 'I agree to the terms and conditions',
+                'label' => "J'accepte les termes et conditions.",
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
+                        'message' => 'Vous devez accepter nos conditions.',
                     ]),
                 ],
             ])
             ->add('plainPassword', RepeatedType::class, [
                 'mapped' => false,
                 'type' => PasswordType::class,
-                'invalid_message' => 'The password fields must match.',
+                'invalid_message' => 'Les mots de passe doivent correspondre.',
                 'options' => ['attr' => ['class' => 'password-field']],
                 'required' => true,
-                'first_options'  => ['label' => 'Password'],
-                'second_options' => ['label' => 'Repeat Password'],
+                'first_options'  => ['label' => 'Mot de passe'],
+                'second_options' => ['label' => 'Repetez le mot de passe'],
                 'error_bubbling' => true, // Move the error message to the end of the form
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password.',
+                        'message' => 'Entrez un mot de passe.',
                     ]),
                     new Length([
                         'min' => 8,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters long.',
+                        'minMessage' => 'Votre mot de passe doit contenir {{ limit }} caractères au minimum.',
                         // You can set a max length as well if needed
                     ]),
                     new Regex([
                         'pattern' => '/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/',
-                        'message' => 'Your password should contain at least one uppercase letter and one digit.',
+                        'message' => 'Votre mot de passe doit contenir au moins une majuscule et un chiffre.',
                     ]),
                 ],
             ]);
