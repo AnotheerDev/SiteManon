@@ -15,11 +15,19 @@ class ContactRequestType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('lastName',TextType::class)
-            ->add('firstName',TextType::class)
+            ->add('lastName',TextType::class, [
+                'label' => 'Nom'
+            ])
+            ->add('firstName',TextType::class, [
+                'label' => 'Prénom'
+            ])
             ->add('email',EmailType::class)
-            ->add('subject',TextType::class)
-            ->add('message', TextareaType::class)
+            ->add('subject',TextType::class, [
+                'label' => 'Sujet'
+            ])
+            ->add('message', TextareaType::class, [
+                'placeholder' => 'Votre message',
+            ])
             // On peut mettre le submit ici ou dans le twig
             // ->add('submit', submitType::class)
         ;
