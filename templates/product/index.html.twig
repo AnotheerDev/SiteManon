@@ -31,7 +31,7 @@
                 {% endif %}
             </div>
             <p>{{ product.description|raw }}</p>
-            <p>{{ product.price }} €</p>
+            <p>{{ product.price|number_format(2, '.', ',') }} €</p>
             <form action="{{ path('cart_add', {'id': product.id}) }}" method="post">
                 <input type="number" name="quantity" value="1" min="1" class="quantity-input">
                 <button type="submit" class="add-to-cart">Ajouter au panier</button>
