@@ -50,7 +50,7 @@
                         <tr>
                             <td>{{ cart.product.name }}</td>
                             <td>{{ cart.quantity }}</td>
-                            <td>{{ cart.product.price|number_format(2, '.', ',') }} €</td>
+                            <td>{{ cart.price|number_format(2, '.', ',') }} €</td>
                         </tr>
                     {% endfor %}
                 </tbody>
