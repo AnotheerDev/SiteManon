@@ -160,6 +160,7 @@ class CartController extends AbstractController
                 }
                 $cartItem->setProduct($product);
                 $cartItem->setQuantity($item['quantity']);
+                $cartItem->setPrice($product->getPrice());
                 $cartItem->setCommande($commande);
                 $entityManager->persist($cartItem);
             }
@@ -229,7 +230,7 @@ class CartController extends AbstractController
     
         $total = 0;
         foreach ($commande->getCarts() as $cart) {
-            $total += $cart->getProduct()->getPrice() * $cart->getQuantity();
+            $total += $cart->getPrice() * $cart->getQuantity();
         }
 
         // Passer l'entité commande au template
