@@ -165,7 +165,7 @@ p {
 
 .parallax-section{
 
-    background-image: url("../img/parallax.PNG");
+    background-image: url("../img/parallax.webp");
     height: 800px; 
     background-attachment: fixed;
     background-position: center;
