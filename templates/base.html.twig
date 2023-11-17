@@ -73,28 +73,28 @@
             </div>
             <nav class="nav" id="nav">
                 <ul>
-                    <li><a href="{{ path('app_home') }}">Home</a></li>
-                    <li><a href="{{ path('app_article') }}">My work</a></li>
+                    <li><a href="{{ path('app_home') }}">Accueil</a></li>
+                    <li><a href="{{ path('app_article') }}">Blog</a></li>
                     <li class="dropdown">
-                        <a href="{{ path('app_category') }}" class="dropdown-toggle">Place</a>
+                        <a href="{{ path('app_category') }}" class="dropdown-toggle">Forum</a>
                         <div class="dropdown-menu">
                             {% for category in categories %}
                             <a href="{{ path('app_topics', {'categoryId': category.id}) }}" class="dropdown-link">{{ category.name }}</a>
                             {% else %}
-                            <a href="#">No categories found</a>
+                            <a href="#">Pas de catégories trouvées</a>
                             {% endfor %}
                         </div>
                     </li>
-                    <li><a href="{{ path('app_product') }}">Shop</a></li>
+                    <li><a href="{{ path('app_product') }}">Boutique</a></li>
                     <li><a href="{{ path('app_contact') }}">Contact</a></li>
                     {% if app.user %}
-                    <li><a href="{{ path('app_logout') }}">Disconnect</a></li>
+                    <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
                     {% else %}
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle">Login/Register</a>
+                        <a href="#" class="dropdown-toggle">Mon compte</a>
                         <div class="dropdown-menu">
-                            <a href="{{ path('app_login') }}">Login</a>
-                            <a href="{{ path('app_register') }}">Register</a>
+                            <a href="{{ path('app_login') }}">Se connecter</a>
+                            <a href="{{ path('app_register') }}">S'enregistrer</a>
                         </div>
                     </li>
                     {% endif %}
@@ -103,7 +103,7 @@
         </div>
         {# Background du animé du menu #}
         <div class="menu-bg" id="menu-bg"></div>
-        <img src="{{ asset('/img/manonManuscrit.PNG') }}" alt="logo" id="manonLogo">
+        <img src="{{ asset('/img/manonManuscritResize.webp') }}" alt="logo" id="manonLogo">
     </section>
 
 
@@ -115,12 +115,12 @@
             <div class="sitemap">
                 <h3>Plan du site : </h3>
                 <ul>
-                    <li><a href="{{ path('app_home') }}">Home</a></li>
-                    <li><a href="{{ path('app_article') }}">My work</a></li>
-                    <li><a href="{{ path('app_category') }}">Place</a></li>
-                    <li><a href="#">Shop</a></li>
-                    <li><a href="{{ path('app_login') }}">Login</a></li>
-                    <li><a href="{{ path('app_register') }}">Register</a></li>
+                    <li><a href="{{ path('app_home') }}">Accueil</a></li>
+                    <li><a href="{{ path('app_article') }}">Blog</a></li>
+                    <li><a href="{{ path('app_category') }}">Forum</a></li>
+                    <li><a href="{{ path('app_product') }}">Boutique</a></li>
+                    <li><a href="{{ path('app_login') }}">Se connecter</a></li>
+                    <li><a href="{{ path('app_register') }}">S'enregistrer</a></li>
                 </ul>
             </div>
 
@@ -128,14 +128,14 @@
                 <h3>Réseaux sociaux : </h3>
                 <div class="social">
                     <a href="https://www.instagram.com/manoe_rvb/" target="_blank" title="Instagram">
-                        <img src="{{ asset('img/icone_insta.PNG') }}" alt="Icône Instagram" class="social-icon">
+                        <img src="{{ asset('img/icone_insta.webp') }}" alt="Icône Instagram" class="social-icon">
                     </a>
                     <a href="https://www.tiktok.com/@manoervb" target="_blank" title="TikTok">
-                        <img src="{{ asset('img/icone_tiktok.PNG') }}" alt="Icône TikTok" class="social-icon">
+                        <img src="{{ asset('img/icone_tiktok.webp') }}" alt="Icône TikTok" class="social-icon">
                     </a>
                     <a href="https://www.tiktok.com/@manoervb" title="Contactez-moi">
                         {# il faudra mettre le lien faire contact"{{ path('contact_route_name') }}" #}
-                        <img src="{{ asset('img/icone_env.PNG') }}" alt="Icône d'enveloppe" class="social-icon">
+                        <img src="{{ asset('img/icone_env.webp') }}" alt="Icône d'enveloppe" class="social-icon">
                     </a>
                 </div>
             </div>
