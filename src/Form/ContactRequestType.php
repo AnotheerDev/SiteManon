@@ -25,9 +25,7 @@ class ContactRequestType extends AbstractType
             ->add('subject',TextType::class, [
                 'label' => 'Sujet'
             ])
-            ->add('message', TextareaType::class, [
-                'placeholder' => 'Votre message',
-            ])
+            ->add('message', TextareaType::class)
             // On peut mettre le submit ici ou dans le twig
             // ->add('submit', submitType::class)
         ;
