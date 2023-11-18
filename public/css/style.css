@@ -842,6 +842,22 @@ input[type="password"]{
 .container {
     min-height: 65vh;
 }
+.order-details table {
+    /* width: 100%; */
+    border-collapse: collapse;
+}
+.order-details th, .order-details td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+.order-details th {
+    background-color: #f2f2f2;
+    text-align: left;
+}
+.order-details tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
 
 
 /*=============== BREAKPOINTS ===============*/
