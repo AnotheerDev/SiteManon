@@ -70,7 +70,7 @@ class RegistrationFormType extends AbstractType
                     ]),
                     new Regex([
                         'pattern' => '/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/',
-                        'message' => 'Votre mot de passe doit contenir au moins une majuscule et un chiffre.',
+                        'message' => "Votre mot de passe doit contenir au moins une majuscule et un chiffre ainsi qu'un caractère spécial.",
                     ]),
                 ],
             ]);
