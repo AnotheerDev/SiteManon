@@ -46,19 +46,29 @@ class TopicRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-    public function findTopicsByCategory(int $categoryId)
-    {
-        $em = $this->getEntityManager();
-        $qb = $em->createQueryBuilder();
+public function findTopicsByCategory(int $categoryId)
+{
+    // Récupération de l'EntityManager de Doctrine
+    $em = $this->getEntityManager();
+    // Création d'un QueryBuilder pour construire la requête
+    $qb = $em->createQueryBuilder();
 
-        $qb->select('t')
-            ->from('App\Entity\Topic', 't')
-            ->where('t.categoryTopic = :categoryId')
-            ->setParameter('categoryId', $categoryId)
-            ->orderBy('t.dateCreation', 'DESC');
+    // Construction de la requête DQL
+    // Sélection de l'entité 'Topic' en tant que 't'
+    $qb->select('t')
+        // Définition de l'entité source 'Topic' avec l'alias 't'
+        ->from('App\Entity\Topic', 't')
+        // Ajout d'une condition où la catégorie du topic doit correspondre à l'ID de catégorie fourni
+        ->where('t.categoryTopic = :categoryId')
+        // Liaison du paramètre 'categoryId' à la variable $categoryId
+        ->setParameter('categoryId', $categoryId)
+        // Tri des résultats par 'dateCreation' en ordre décroissant
+        ->orderBy('t.dateCreation', 'DESC');
 
-        return $qb->getQuery()->getResult();
-    }
+    // Exécution de la requête et retour des résultats
+    return $qb->getQuery()->getResult();
+}
+
 
 
     public function findMostClickedTopics($limit = 3)
