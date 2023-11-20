@@ -175,7 +175,7 @@ class CartController extends AbstractController
             foreach ($cart as $id => $item) {
                 $product = $productRepository->find($id);
                 if (!$product) {
-                    // Si le produit n'est pas trouvé, vous pourriez vouloir gérer cette erreur.
+                    // Si le produit n'est pas trouvé, on peut gérer cette erreur.
                     continue;
                 }
                 $lineItems[] = [
@@ -184,7 +184,7 @@ class CartController extends AbstractController
                         'unit_amount' => $product->getPrice() * 100, // Le prix doit être en centimes pour Stripe
                         'product_data' => [
                             'name' => $product->getName(),
-                            // Vous pouvez ajouter d'autres détails du produit ici si nécessaire.
+                            // on peut ajouter d'autres détails du produit ici si nécessaire.
                         ],
                     ],
                     'quantity' => $item['quantity'],
