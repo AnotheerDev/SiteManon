@@ -191,8 +191,6 @@ class CartController extends AbstractController
                 ];
             }
             
-            // ENLEVER LE CODE CI-DESSOUS AVANT DE PUSH SUR GITHUB
-            // \Stripe\Stripe::setApiKey('GO SECRET KEY ON STRIPE');
             $stripe_sk = $this->getParameter('stripe_sk');
             \Stripe\Stripe::setApiKey($stripe_sk);
             
