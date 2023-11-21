@@ -36,7 +36,7 @@ class UserController extends AbstractController
             $topic->setUser(null);
         }
 
-        // Maintenant, vous pouvez supprimer l'utilisateur en toute sécurité
+        // Maintenant, on peut supprimer l'utilisateur en toute sécurité
         $entityManager->remove($user);
         $entityManager->flush();
     }
