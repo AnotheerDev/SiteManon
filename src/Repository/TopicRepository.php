@@ -71,6 +71,7 @@ public function findTopicsByCategory(int $categoryId)
 
 
 
+
     public function findMostClickedTopics($limit = 3)
     {
         // Récupération de l'EntityManager de Doctrine
