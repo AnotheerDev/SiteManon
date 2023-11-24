@@ -16,6 +16,7 @@
     --font-nav: 'Sen', serif;
     --font-text: 'Arvo', serif;
     /*========== Font weight ==========*/
+    --font-weight-regular: 800;
 }
 
 /* view base.html.twig */
@@ -70,7 +71,7 @@
 
 .nav li a {
     color: white;
-    font-size: 20px;
+    font-size: 1.75em;
     text-decoration: none;
 }
 
@@ -135,6 +136,8 @@ p {
 }
 
 
+
+
 /* view home index.html.twig */
 
 #sectionHome{
@@ -149,6 +152,7 @@ p {
     text-align: center;
     font-family: var(--font-title);
     color: var(--third-color);
+    font-size: 1.25em;
 }
 
 #illustrationBureau{
