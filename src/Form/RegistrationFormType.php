@@ -64,12 +64,12 @@ class RegistrationFormType extends AbstractType
                         'message' => 'Entrez un mot de passe.',
                     ]),
                     new Length([
-                        'min' => 8,
+                        'min' => 12,
                         'minMessage' => 'Votre mot de passe doit contenir {{ limit }} caractères au minimum.',
                         // You can set a max length as well if needed
                     ]),
                     new Regex([
-                        'pattern' => '/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/',
+                        'pattern' => '/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{12,}$/',
                         'message' => "Votre mot de passe doit contenir au moins une majuscule et un chiffre ainsi qu'un caractère spécial.",
                     ]),
                 ],
