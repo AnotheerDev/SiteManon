@@ -27,11 +27,13 @@
 {% endblock %}
 
 {% block body %}
-<h2>{{ topicName }}</h2>
+
 <main class="main-cat">
+
     {% include "_partials/_thematique.html.twig" %}
 
     <section class="middle-post">
+        <h2>{{ topicName }}</h2>
         {% for post in pagination %} 
         <div class="post">
             <p>{{ post.user|username_or_deleted }}:</p>
