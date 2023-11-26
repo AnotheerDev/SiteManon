@@ -8,12 +8,37 @@
 {% block title %}Finaliser la commande{% endblock %}
 
 {% block body %}
-    <h1>Finaliser la commande</h1>
+    <section>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <button type="submit" class="btn btn-success">Confirmer la commande</button>
-    {{ form_end(form) }}
+            <div class="checkout-form"> 
+                <h1>Finaliser la commande</h1>
+                {{ form_start(form) }}
+                <div class="form-row">
+                    {{ form_label(form.lastName) }}
+                    {{ form_widget(form.lastName, {'attr': {'class': 'form-input'}}) }}
+                </div>
+                <div class="form-row">
+                    {{ form_label(form.firstName) }}
+                    {{ form_widget(form.firstName, {'attr': {'class': 'form-input'}}) }}
+                </div>
+                <div class="form-row">
+                    {{ form_label(form.email) }}
+                    {{ form_widget(form.email, {'attr': {'class': 'form-input'}}) }}
+                </div>
+                <div class="form-row">
+                    {{ form_label(form.adresse) }}
+                    {{ form_widget(form.adresse, {'attr': {'class': 'form-input'}}) }}
+                </div>
+                <div class="form-row">
+                    {{ form_label(form.codePost) }}
+                    {{ form_widget(form.codePost, {'attr': {'class': 'form-input'}}) }}
+                </div>                
+                {{ form_rest(form) }}
+                    <button type="submit" class="btn-blue btn btn-success">Confirmer la commande</button>
+                {{ form_end(form) }}
+            </div>
+    </section>
+
 {% endblock %}
 
 {% block javascripts %}
