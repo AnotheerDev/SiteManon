@@ -843,6 +843,17 @@ input[type="password"]{
     border-color: #004085;
 }
 
+.checkout-form {
+    display: flex;
+    flex-direction: column;
+    height: 65vh;
+    justify-content: center;
+    align-items: center;
+}
+.checkout-form h1 {
+    font-size: 2.25em;
+}
+
 .container {
     min-height: 65vh;
 }
@@ -879,17 +890,12 @@ input[type="password"]{
     }
 
     .log{
-        /* flex-direction: column; */
         align-items: center;
     }
 
     #sectionCarousel{
         margin-top: 70px;
     }
-
-    /* .dropdown-menu:hover {
-        color: var(--third-color);
-    } */
 }
 
 
