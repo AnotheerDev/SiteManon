@@ -46,10 +46,16 @@
             {{ knp_pagination_render(pagination) }}
         </div>
     
+        {% if app.user %}
+        <h3>Ajouter un nouveau post</h3>
         {{ form_start(form, {'method': 'post', 'attr': {'class': 'post-form'}}) }}
         {{ form_widget(form) }}
         <button type="submit" class="btn-blue">Ajouter le post</button>
         {{ form_end(form) }}
+        {% else %}
+        <p>Vous devez être connecté pour ajouter un post.</p>
+        {% endif %}
+
     </section>
 
     {% include "_partials/_rules.html.twig" %}

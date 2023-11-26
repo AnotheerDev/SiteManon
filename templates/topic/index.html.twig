@@ -37,16 +37,27 @@
         </div>
     
         <div>
-            <h3>Ajouter un nouveau topic</h3>
+            {% if app.user %}
+                <h3>Ajouter un nouveau topic</h3>
+                <div class="form-row">
+                    {{ form_start(form) }}
+                    {{ form_widget(form, {'attr': {'class': 'form-input'}}) }}
+                    <button type="submit" class="btn-blue">Ajouter</button>
+                    {{ form_end(form) }}
+                </div>
+            {% else %}
+                <p>Vous devez être connecté pour ajouter un topic.</p>
+            {% endif %}
+            {# <h3>Ajouter un nouveau topic</h3>
             <div class="form-row">
                 {{ form_start(form) }}
                 {{ form_widget(form, {'attr': {'class': 'form-input'}}) }}
                 <button type="submit" class="btn-blue">Ajouter</button>
                 {{ form_end(form) }}
-            </div>
+            </div> #}
         </div>
     </section>
-    
+
 
 
     {% include "_partials/_rules.html.twig" %}
