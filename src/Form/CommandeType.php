@@ -22,10 +22,11 @@ class CommandeType extends AbstractType
                 'label' => 'Prénom',
             ])
             ->add('email', EmailType::class)
-            ->add('reference' , TextType::class, [
-                'label' => 'Référence',
-                'disabled' => true, // Rendre le champ non éditable
-            ])
+            // ->add('reference' , TextType::class, [
+            //     'label' => 'Référence',
+            //     'disabled' => true, // Rendre le champ non éditable
+            //     'mapped' => false, 
+            // ])
             ->add('adresse', TextType::class, [
                 'label' => 'Adresse',
             ])
