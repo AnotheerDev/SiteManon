@@ -863,21 +863,35 @@ input[type="password"]{
 .container {
     min-height: 65vh;
 }
+
 .order-details table {
-    /* width: 100%; */
+    width: 75%;
     border-collapse: collapse;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
+    margin-top: 20px; 
 }
+
 .order-details th, .order-details td {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 12px 15px; 
+    text-align: center;
 }
+
 .order-details th {
-    background-color: #f2f2f2;
-    text-align: left;
+    background-color: #7bb57d; 
+    color: white; 
+    font-size: 16px; 
 }
+
 .order-details tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #f9f9f9; 
 }
+
+.order-details tr:hover {
+    background-color: #ddd; 
+    cursor: pointer; 
+}
+
 
 
 
