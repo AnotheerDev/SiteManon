@@ -123,18 +123,20 @@
 }
 
 #manonLogo{
-    width: 100px;
-    height: 100px;
+    width: 125px;
+    height: 125px;
 }
 
 #section1{
     display: flex;
     justify-content: flex-end;
+    margin-bottom: 100px;
 }
 
 p {
     font-family: var(--font-text);
 }
+
 
 
 
@@ -153,7 +155,7 @@ p {
     text-align: center;
     font-family: var(--font-title);
     color: var(--third-color);
-    font-size: 1.25em;
+    font-size: 1.40em;
 }
 
 #illustrationBureau{
@@ -759,6 +761,29 @@ input[type="password"]{
     justify-content: space-evenly;
 }
 
+.shop-title {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.shop-title h1 {
+    font-size: 2em;
+}
+
+#cart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    gap: 10px;
+    font-family: var(--font-text);
+}
+
+#cart a {
+    text-decoration: none;
+    color: black;
+}
 
 .product {
     border: 1px solid #ddd; /* Bordure légère */
@@ -768,6 +793,7 @@ input[type="password"]{
     margin: 20px 0; /* Espacement entre les cartes */
     background-color: white; /* Couleur de fond */
     text-align: center; /* Centrer le texte et les éléments à l'intérieur */
+    font-family: var(--font-text);
 }
 
 .photo-produit {
@@ -794,6 +820,7 @@ input[type="password"]{
     min-height: 65vh;
     max-width: 800px;
     margin: auto;
+    font-family: var(--font-text);
 }
 
 .cart-table {
