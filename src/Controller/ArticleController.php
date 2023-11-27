@@ -21,9 +21,9 @@ class ArticleController extends AbstractController
         $query = $articleRepository->findAllArticlesQuery();
 
         $articles = $paginator->paginate(
-            $query, /* la requête ou le tableau d'articles */
-            $request->query->getInt('page', 1), /* numéro de la page en cours, 1 par défaut */
-            3 /* limite par page */
+            $query, // la requête ou le tableau d'articles 
+            $request->query->getInt('page', 1), // numéro de la page en cours, 1 par défaut 
+            3 // limite par page 
         );
 
         return $this->render('article/index.html.twig', [
@@ -34,23 +34,34 @@ class ArticleController extends AbstractController
     #[Route('/article/{id}', name: 'app_article_show')]
     public function show(Article $article, Request $request, EntityManagerInterface $entityManager)
     {
+        // Création d'un nouvel objet Quote pour les commentaires
         $quote = new Quote();
+
+        // Création du formulaire de commentaire
         $form = $this->createForm(QuoteType::class, $quote);
         $form->handleRequest($request);
 
+        // Vérification si le formulaire est soumis et valide
         if ($form->isSubmitted() && $form->isValid()) {
+            // Association de l'article et de l'utilisateur actuellement connecté au commentaire
             $quote->setArticle($article);
-            $quote->setUser($this->getUser()); // utilisateur est connecté
+            $quote->setUser($this->getUser()); // Récupération de l'utilisateur connecté
+
+            // Définition de la date de création du commentaire
             $quote->setDateCreation(new \DateTime());
+
+            // Enregistrement du commentaire dans la base de données
             $entityManager->persist($quote);
             $entityManager->flush();
 
+            // Redirection vers la même page de l'article pour voir le commentaire ajouté
             return $this->redirectToRoute('app_article_show', ['id' => $article->getId()]);
         }
 
+        // Rendu de la page de l'article avec le formulaire de commentaire
         return $this->render('article/show.html.twig', [
-            'article' => $article,
-            'form' => $form->createView(),
+            'article' => $article, // Passage de l'article à la vue
+            'form' => $form->createView(), // Passage du formulaire à la vue
         ]);
     }
 }
