@@ -17,13 +17,15 @@ class UserController extends AbstractController
     {
          // Obtient l'utilisateur actuellement connecté
         $user = $this->getUser();
-    
+        $commandes = $user->getCommander();
+
         if (!$user) {
             throw $this->createNotFoundException('Utilisateur non trouvé');
         }
     
         return $this->render('user/index.html.twig', [
             'user' => $user,
+            'commandes' => $commandes,
         ]);
     }
     
