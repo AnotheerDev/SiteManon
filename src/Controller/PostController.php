@@ -26,6 +26,8 @@ class PostController extends AbstractController
         ]);
     }
 
+
+    // je passe en paramètre de la méthode le service Security pour récupérer l'utilisateur connecté
     private $security;
 
     public function __construct(Security $security)
@@ -59,9 +61,9 @@ class PostController extends AbstractController
     
         // Paginer les résultats de la requête
         $pagination = $paginator->paginate(
-            $query, /* query NOT result */
-            $request->query->getInt('page', 1), /* numéro de la page*/
-            5 /* limite par page */
+            $query, //query NOT result 
+            $request->query->getInt('page', 1), // numéro de la page
+            5 // limite par page 
         );
     
         if ($form->isSubmitted() && $form->isValid()) {
