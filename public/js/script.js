@@ -59,6 +59,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 // Modal
+document.addEventListener('DOMContentLoaded', function() {
+    const images = document.querySelectorAll('.image-reduite');
+    images.forEach(image => {
+        image.addEventListener('click', function() {
+            openModal(this.src);
+        });
+    });
+});
+
+// Modal
 function openModal(src) {
     document.getElementById('myModal').style.display = "block";
     document.getElementById('img01').src = src;
@@ -67,6 +77,7 @@ function openModal(src) {
 function closeModal() {
     document.getElementById('myModal').style.display = "none";
 }
+
 
 // Clicks sur les topics
 document.addEventListener('DOMContentLoaded', function() {
