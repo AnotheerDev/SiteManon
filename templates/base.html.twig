@@ -89,7 +89,12 @@
                     <li><a href="{{ path('app_product') }}">Boutique</a></li>
                     <li><a href="{{ path('app_contact') }}">Contact</a></li>
                     {% if app.user %}
-                    <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle">Mon compte</a>
+                        <div class="dropdown-menu">
+                            <a href="{{ path('app_user') }}">Profil</a>
+                            <a href="{{ path('app_logout') }}">Déconnexion</a>
+                        </div>
                     {% else %}
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle">Mon compte</a>
