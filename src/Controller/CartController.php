@@ -150,6 +150,11 @@ class CartController extends AbstractController
         $form = $this->createForm(CommandeType::class, $commande);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            // Récupérer l'utilisateur connecté
+            $user = $this->getUser();
+            if ($user) {
+                $commande->setUser($user);
+            }
             // Créer et ajouter les objets Cart à la commande
             foreach ($cart as $id => $item) {
                 $cartItem = new Cart();
