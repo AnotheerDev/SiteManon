@@ -4,11 +4,14 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\EditProfileType;
+use App\Form\ChangePasswordFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+
 
 class UserController extends AbstractController
 {
@@ -55,6 +58,33 @@ class UserController extends AbstractController
         // Affichage du formulaire
         return $this->render('user/edit.html.twig', [
             'editForm' => $form->createView(),
+        ]);
+    }
+
+
+    #[Route('/user/change-password', name: 'app_change_password')]
+    public function changePassword(Request $request, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $entityManager): Response
+    {
+        $user = $this->getUser();
+        $form = $this->createForm(ChangePasswordFormType::class);
+        $form->handleRequest($request);
+    
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Hasher le nouveau mot de passe
+            $newPassword = $passwordHasher->hashPassword($user, $form->get('plainPassword')->getData());
+            $user->setPassword($newPassword);
+    
+            // Enregistrer le nouveau mot de passe dans la base de données
+            $entityManager->persist($user);
+            $entityManager->flush();
+    
+            // Ajouter un message flash et rediriger
+            $this->addFlash('success', 'Votre mot de passe a été changé avec succès.');
+            return $this->redirectToRoute('app_user');
+        }
+    
+        return $this->render('user/change_password.html.twig', [
+            'changePasswordForm' => $form->createView(),
         ]);
     }
 
