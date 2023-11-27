@@ -63,4 +63,29 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+    public function updateUserData($userId, $newData)
+    {
+        // Création d'un QueryBuilder pour construire la requête DQL
+        $qb = $this->createQueryBuilder('u');
+
+        // Début de la construction de la requête de mise à jour
+        $qb->update()
+        // Mise à jour du nom de l'utilisateur
+        ->set('u.nickname', ':nickname')
+        // Mise à jour de l'email de l'utilisateur
+        ->set('u.email', ':email')
+        // Condition pour identifier l'utilisateur spécifique à mettre à jour
+        ->where('u.id = :id')
+        // Définition du paramètre 'name' avec la nouvelle valeur
+        ->setParameter('nickname', $newData['nickname'])
+        // Définition du paramètre 'email' avec la nouvelle valeur
+        ->setParameter('email', $newData['email'])
+        // Définition du paramètre 'id' pour cibler l'utilisateur
+        ->setParameter('id', $userId)
+        // Exécution de la requête
+        ->getQuery()
+        ->execute();
+    }
+
 }
