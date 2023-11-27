@@ -18,8 +18,7 @@
     </a>
     <div class="article">
       <p>{{ article.content|raw }}</p>
-      <img src="{{ asset('img/' ~ article.photo) }}" alt="Illustration" class="image-reduite"
-        onclick="openModal(this.src)">
+      <img src="{{ asset('img/' ~ article.photo) }}" alt="Illustration" class="image-reduite">
     </div>
     <div class="comment">
       <p>Posté le : {{ article.dateCreation|date('d-m-Y') }}</p>
