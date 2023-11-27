@@ -34,8 +34,7 @@
   <h2>{{ article.title }}</h2>
   <div class="article">
     <p>{{ article.content|raw }}</p>
-    <img src="{{ asset('img/' ~ article.photo) }}" alt="Illustration" class="image-reduite"
-      onclick="openModal(this.src)">
+    <img src="{{ asset('img/' ~ article.photo) }}" alt="Illustration" class="image-reduite">
   </div>
   <div class="foot-article">
     <p>Posté le : {{ article.dateCreation|date('d-m-Y') }}</p>
@@ -48,15 +47,19 @@
     {% for quote in article.getQuoteArticle %}
     <div>
       <strong>{{ quote.getUser.getNickname }}</strong>
-      <p>{{ quote.getContent }}</p>
+      <p>{{ quote.getContent|raw }}</p>
       <p>Posté le {{ quote.getDateCreation|date('d/m/Y') }}</p>
     </div>
     {% endfor %}
 
-      {{ form_start(form) }}
+    {% if app.user %}
+      {{ form_start(form, {'attr': {'class': 'post-form'}}) }}
       {{ form_widget(form) }}
       <button type="submit" class="btn-blue">Commenter</button>
       {{ form_end(form) }}
+    {% else %}
+    <p>Vous devez être connecté pour ajouter un commentaire.</p>
+    {% endif %}
 
   </div>
 
