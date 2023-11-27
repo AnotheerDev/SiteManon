@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Modifier le Profil</h1>
+    {{ form_start(editForm) }}
+    {{ form_row(editForm.nickname) }}
+    {{ form_row(editForm.email) }}
+    <button type="submit">Sauvegarder les Changements</button>
+    {{ form_end(editForm) }}
+{% endblock %}
