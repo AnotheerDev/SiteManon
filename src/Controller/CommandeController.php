@@ -23,12 +23,15 @@ class CommandeController extends AbstractController
     #[Route('/download_order_pdf/{id}', name: 'download_order_pdf')]
     public function downloadOrderPdf($id, EntityManagerInterface $entityManager): Response
     {
+        // Récupérer la commande à partir de son id
         $commande = $entityManager->getRepository(Commande::class)->find($id);
 
+        // Gestion du cas où la commande n'est pas trouvée
         if (!$commande) {
             throw $this->createNotFoundException('La commande n\'a pas été trouvée.');
         }
 
+        // Calculer le total de la commande
         $total = 0;
         foreach ($commande->getCarts() as $cart) {
             $total += $cart->getProduct()->getPrice() * $cart->getQuantity();
