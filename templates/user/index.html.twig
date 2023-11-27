@@ -16,4 +16,62 @@
     <a href="{{ path('app_reset_password') }}">Changer le mot de passe</a>
 
 </div>
+
+<div class="order-details">
+    <h2>Vos Commandes</h2>
+    {% for commande in commandes %}
+        <h3>Détails de la Commande n°{{ commande.reference }}</h3>
+        <table>
+            <tr>
+                <th>Date de commande</th>
+                <td>{{ commande.dateCommande|date('d-m-Y') }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ commande.lastName }}</td>
+            </tr>
+            <tr>
+                <th>Prénom</th>
+                <td>{{ commande.firstName }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ commande.email }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ commande.adresse }}, {{ commande.codePost }}</td>
+            </tr>
+        </table>
+
+        <h3>Articles dans la Commande :</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Produit</th>
+                    <th>Quantité</th>
+                    <th>Prix Unit.</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% set total = 0 %}
+                {% for cart in commande.carts %}
+                    {% set total = total + (cart.quantity * cart.price) %}
+                    <tr>
+                        <td>{{ cart.product.name }}</td>
+                        <td>{{ cart.quantity }}</td>
+                        <td>{{ cart.price|number_format(2, '.', ',') }} €</td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="2"><strong>Total :</strong></td>
+                    <td><strong>{{ total|number_format(2, '.', ',') }} €</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    {% else %}
+        <p>Aucune commande passée.</p>
+    {% endfor %}
+</div>
+
 {% endblock %}
