@@ -21,7 +21,7 @@ class ArticleController extends AbstractController
         $query = $articleRepository->findAllArticlesQuery();
 
         $articles = $paginator->paginate(
-            $query, // la requête ou le tableau d'articles 
+            $query, // la requête  d'articles 
             $request->query->getInt('page', 1), // numéro de la page en cours, 1 par défaut 
             3 // limite par page 
         );
