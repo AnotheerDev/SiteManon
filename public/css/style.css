@@ -137,7 +137,9 @@ p {
     font-family: var(--font-text);
 }
 
-
+.hidden {
+    display: none;
+}
 
 
 
