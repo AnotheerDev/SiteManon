@@ -35,7 +35,8 @@ class RegistrationController extends AbstractController
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        //vérfication du formulaire soumis et valide et du champ middle-name vide
+        if ($form->isSubmitted() && $form->isValid() && $form->get('middle-name')->getData() === null) {
             // encode the plain password
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
