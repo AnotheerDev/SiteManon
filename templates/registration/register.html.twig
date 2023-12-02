@@ -42,7 +42,10 @@
                     {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'form-checkbox'}}) }} <br>
                     <a href="{{ path('app_mentions') }}"> Mentions légales </a>
                 </div>
-
+                <div class="form-row hidden">
+                    {{ form_label(registrationForm.middle-name) }}
+                    {{ form_widget(registrationForm.middle-name, {'attr': {'class': 'form-input'}}) }}
+                </div>
                 <button type="submit" class="btn-blue g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" data-callback='onSubmit' data-action='submit'>S'enregistrer</button>
             {{ form_end(registrationForm) }}
         </div>
