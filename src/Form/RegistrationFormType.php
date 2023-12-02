@@ -73,6 +73,17 @@ class RegistrationFormType extends AbstractType
                         'message' => "Votre mot de passe doit contenir au moins une majuscule et un chiffre ainsi qu'un caractère spécial.",
                     ]),
                 ],
+            ])
+            //honey pot
+            ->add('middle-name', TextType::class, [
+                'mapped' => false,
+                'required' => false,
+                'attr' => ['class' => 'hidden', 'tabindex' => '-1'], // Utiliser une classe pour le cacher avec CSS
+                'constraints' => [
+                    new Length([
+                        'max' => 0,
+                    ]),
+                ],
             ]);
     }
 
