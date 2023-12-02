@@ -54,6 +54,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __construct()
     {
+        //initialisation des roles par defaut USER
+        $this->roles = ['ROLE_USER'];
         $this->creatPost = new ArrayCollection();
         $this->creatTopic = new ArrayCollection();
         $this->userQuote = new ArrayCollection();
