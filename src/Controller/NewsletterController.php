@@ -33,7 +33,7 @@ class NewsletterController extends AbstractController
         // Gestion de la requête
         $form->handleRequest($request);
         // Vérification de la soumission et de la validité du formulaire
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid() && $form->get('middle-name')->getData() === null) {
             // Créer et envoyer l'e-mail
             $email = (new Email())
                 ->from('votre@adresse.email') //  votre adresse e-mail
