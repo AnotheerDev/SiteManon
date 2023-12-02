@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\ContactRequest;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -28,6 +29,17 @@ class ContactRequestType extends AbstractType
             ->add('message', TextareaType::class)
             // On peut mettre le submit ici ou dans le twig
             // ->add('submit', submitType::class)
+            //honey pot
+            ->add('middle-name', TextType::class, [
+                'mapped' => false,
+                'required' => false,
+                'attr' => ['class' => 'hidden', 'tabindex' => '-1'], // Utiliser une classe pour le cacher avec CSS
+                'constraints' => [
+                    new Length([
+                        'max' => 0,
+                    ]),
+                ],
+            ]);
         ;
     }
 
