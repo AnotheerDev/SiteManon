@@ -120,9 +120,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // reCaptcha
 
-function onSubmitRegister(token) {
+function onSubmit(token) {
     document.getElementById("register-form").submit(); 
     // ID correspond à l'ID du formulaire d'inscription
+    
 }
 
 
