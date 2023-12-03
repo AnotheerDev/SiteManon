@@ -75,7 +75,7 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             //honey pot
-            ->add('middle-name', TextType::class, [
+            ->add('middleName', TextType::class, [
                 'mapped' => false,
                 'required' => false,
                 'attr' => ['class' => 'hidden', 'tabindex' => '-1'], // Utiliser une classe pour le cacher avec CSS
