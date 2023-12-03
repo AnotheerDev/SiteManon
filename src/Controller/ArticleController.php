@@ -64,5 +64,46 @@ class ArticleController extends AbstractController
             'form' => $form->createView(), // Passage du formulaire à la vue
         ]);
     }
+
+    #[Route('/quote/edit/{id}', name: 'app_quote_edit')]
+    public function editquote(Request $request, EntityManagerInterface $entityManager, Quote $quote): Response {
+        // check si l'utilisateur est autorisé à modifier le commentaire
+        if ($this->getUser() !== $quote->getUser() && !$this->isGranted('ROLE_ADMIN')) {
+            throw $this->createAccessDeniedException('Vous n\'êtes pas autorisé à modifier ce commentaire.');
+        }
+
+        $form = $this->createForm(QuoteType::class, $quote);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Le commentaire a été modifié avec succès.');
+
+            return $this->redirectToRoute('app_article_show', ['id' => $quote->getArticle()->getId()]);
+        }
+
+        return $this->render('quote/edit.html.twig', [
+            'form' => $form->createView(),
+            'quote' => $quote,
+        ]);
+    }
+
+    #[Route('/quote/delete/{id}', name: 'app_quote_delete')]
+    public function deletequote(EntityManagerInterface $entityManager, Quote $quote): Response {
+        // chack si l'utilisateur est autorisé à supprimer le commentaire
+        if ($this->getUser() !== $quote->getUser() && !$this->isGranted('ROLE_ADMIN')) {
+            throw $this->createAccessDeniedException('Vous n\'êtes pas autorisé à supprimer ce commentaire.');
+        }
+
+        $articleId = $quote->getArticle()->getId();
+        $entityManager->remove($quote);
+        $entityManager->flush();
+
+        $this->addFlash('success', 'Le commentaire a été supprimé.');
+
+        return $this->redirectToRoute('app_article_show', ['id' => $articleId]);
+    }
+
 }
 
