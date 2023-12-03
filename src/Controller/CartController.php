@@ -2,12 +2,16 @@
 
 namespace App\Controller;
 
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use App\Entity\Cart;
 use App\Entity\Commande;
 use App\Form\CommandeType;
+use Symfony\Component\Mime\Email;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -222,7 +226,7 @@ class CartController extends AbstractController
 
 
     #[Route('/checkout/success/{id}', name: 'checkout_success')]
-    public function checkoutSuccess($id, EntityManagerInterface $entityManager): Response {
+    public function checkoutSuccess($id, EntityManagerInterface $entityManager, MailerInterface $mailer): Response {
         // Récupérer la commande à partir de l'ID
         $commande = $entityManager->getRepository(Commande::class)->find($id);
     
@@ -235,6 +239,29 @@ class CartController extends AbstractController
         foreach ($commande->getCarts() as $cart) {
             $total += $cart->getPrice() * $cart->getQuantity();
         }
+
+        // Générer le PDF
+        $html = $this->renderView('checkout/order_pdf.html.twig', [
+            'commande' => $commande,
+            'total' => $total,
+        ]);
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont', 'Arial');
+        $dompdf = new Dompdf($pdfOptions);
+        $dompdf->loadHtml($html);
+        $dompdf->render();
+        $pdfContent = $dompdf->output();
+
+        // Créer l'email
+        $email = (new Email())
+            ->from('adresse-email@exemple.com')
+            ->to($commande->getEmail()) // L'adresse email du client
+            ->subject('Votre commande sur le site de Manon')
+            ->html('Voici une copie du PDF de votre commande.')
+            ->attach($pdfContent, 'commande.pdf', 'application/pdf');
+
+        // Envoyer l'email
+        $mailer->send($email);
 
         // Passer l'entité commande au template
         return $this->render('checkout/success.html.twig', [
