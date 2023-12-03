@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier le Commentaire{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Modifier le Commentaire</h1>
+
+    {{ form_start(form) }}
+
+    {{ form_row(form.content, {
+        'label': 'Votre commentaire'
+    }) }}
+
+    <button class="btn-blue">Modifier</button>
+
+    {{ form_end(form) }}
+
+    <a href="{{ path('app_article_show', {'id': quote.getArticle.getId}) }}">Retour à l'article</a>
+</div>
+{% endblock %}
