@@ -183,8 +183,17 @@ class Commande
 
     private function generateRandomReference(): string
     {
-        return str_pad(mt_rand(0, 999999), 6, '0', STR_PAD_LEFT);
+        // Génère un nombre aléatoire
+        $randomNumber = mt_rand(0, 999999);
+    
+        // Obtient la date et l'heure actuelles au format "YmdHis" (AnnéeMoisJourHeureMinuteSeconde)
+        $dateTime = new \DateTime();
+        $formattedDateTime = $dateTime->format('YmdHis');
+    
+        // Combine le nombre aléatoire et la date-heure, séparés par un tiret
+        return $formattedDateTime . '-' . str_pad($randomNumber, 6, '0', STR_PAD_LEFT);
     }
+    
 
     public function __toString(): string
     {
