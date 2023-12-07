@@ -29,7 +29,7 @@ class Commande
     private ?string $email = null;
 
     #[ORM\Column]
-    private ?int $reference = null;
+    private ?string $reference = null;
 
     #[ORM\ManyToOne(inversedBy: 'commander')]
     private ?User $user = null;
@@ -103,12 +103,12 @@ class Commande
         return $this;
     }
 
-    public function getReference(): ?int
+    public function getReference(): ?string
     {
         return $this->reference;
     }
 
-    public function setReference(int $reference): static
+    public function setReference(string $reference): static
     {
         $this->reference = $reference;
 
