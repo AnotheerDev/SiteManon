@@ -952,6 +952,10 @@ input[type="password"]{
     #sectionCarousel{
         margin-top: 70px;
     }
+
+    .footer-in {
+        flex-direction: column;
+    }
 }
 
 
@@ -978,6 +982,10 @@ input[type="password"]{
 
     #sectionHome{
         height: 100vh;
+    }
+
+    .footer-in {
+        flex-direction: row;
     }
 }
 
@@ -1110,6 +1118,7 @@ input[type="password"]{
 
     .dropdown-menu{
     backdrop-filter: none;
+    font-size: 0.75rem;
     }
 }
 
