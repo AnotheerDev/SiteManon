@@ -561,7 +561,8 @@ input[type="password"]{
     background-color: #3939bc;
     border: none;
     color: white;
-    padding: 10px 10px 10px 10px;
+    margin: 5px;
+    padding: 10px;
     text-align: center;
     display: inline-block;
     font-size: 16px;
@@ -921,7 +922,13 @@ input[type="password"]{
     cursor: pointer; 
 }
 
-
+#pdf-profil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 50px 0 50px 0;
+}
 
 
 /*=============== BREAKPOINTS ===============*/
