@@ -23,7 +23,7 @@ class NewsletterController extends AbstractController
     }
 
 
-    #[Route('/newsletter/contact', name: 'app_contact')]
+    #[Route('/contact', name: 'app_contact')]
     public function contact(Request $request, MailerInterface $mailer): Response
     {
         // Création d'une nouvelle demande de contact
