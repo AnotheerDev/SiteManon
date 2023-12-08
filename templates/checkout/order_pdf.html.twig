@@ -1,6 +1,43 @@
 <!DOCTYPE html>
 <html lang="fr">
-
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+    
+        h1, h2, h3 {
+            color: #0056b3;
+        }
+    
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+    
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+    
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    
+        .order-details {
+            margin-top: 20px;
+        }
+    
+        .total {
+            font-weight: bold;
+            color: #d9534f;
+        }
+    </style>
 <head>
     <meta charset="UTF-8">
     <title>Commande {{ commande.reference }}</title>
