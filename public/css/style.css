@@ -571,6 +571,19 @@ input[type="password"]{
     cursor: pointer;
 }
 
+.btn-red {
+    background-color: #fb0000;
+    border: none;
+    color: white;
+    margin: 5px;
+    padding: 10px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    cursor: pointer;
+}
 /* Style pour les éléments du modal*/
 
 .image-reduite {
