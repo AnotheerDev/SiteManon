@@ -49,7 +49,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Article::class)]
     private Collection $creatArticle;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Commande::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Commande::class, orphanRemoval: false)]
     private Collection $commander;
 
     public function __construct()
