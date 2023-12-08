@@ -7,14 +7,24 @@ use App\Form\EditProfileType;
 use App\Form\ChangePasswordFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class UserController extends AbstractController
 {
+
+    private $security;
+
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
+    
     #[Route('/user', name: 'app_user')]
     public function index(): Response
     {
@@ -92,7 +102,7 @@ class UserController extends AbstractController
     public function deleteUser(User $user, EntityManagerInterface $entityManager): void
     {
         // Parcourir tous les commentaires de l'utilisateur et les déconnecter de l'utilisateur
-        foreach ($user->getUserQuotes() as $quote) {
+        foreach ($user->getUserQuote() as $quote) {
             $quote->setUser(null);
         }
 
@@ -106,10 +116,32 @@ class UserController extends AbstractController
             $topic->setUser(null);
         }
 
+        // Parcourir toutes les commandes de l'utilisateur et les déconnecter de l'utilisateur
+        foreach ($user->getCommander() as $commande) {
+            $commande->setUser(null);
+        }        
         // Maintenant, on peut supprimer l'utilisateur en toute sécurité
         $entityManager->remove($user);
         $entityManager->flush();
     }
 
-
+    #[Route('/user/delete-account', name: 'app_delete_account')]
+    public function deleteAccount(Request $request, EntityManagerInterface $entityManager, TokenStorageInterface $tokenStorage, SessionInterface $session): Response
+    {
+        $user = $this->getUser();
+    
+        if (!$user) {
+            throw $this->createNotFoundException('Utilisateur non trouvé');
+        }
+    
+        // Exécute la fonction de suppression
+        $this->deleteUser($user, $entityManager);
+    
+        // Déconnexion et invalidation de la session
+        $tokenStorage->setToken(null);
+        $session->invalidate();
+    
+        return $this->redirectToRoute('app_home');
+    }
+    
 }
