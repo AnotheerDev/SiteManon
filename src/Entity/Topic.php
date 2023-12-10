@@ -153,4 +153,9 @@ class Topic
 
         return $this;
     }
+
+    public function getPostCount(): int
+    {
+        return $this->posts->count();
+    }
 }
