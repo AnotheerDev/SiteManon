@@ -76,7 +76,7 @@ class TopicController extends AbstractController
         $pagination = $paginator->paginate(
             $queryBuilder, 
             $request->query->getInt('page', 1), // Numéro de la page en cours, 1 par défaut
-            3 // Nombre de résultats par page
+            6 // Nombre de résultats par page
         );
     
         if ($form->isSubmitted() && $form->isValid()) {
