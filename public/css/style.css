@@ -639,6 +639,7 @@ input[type="password"]{
     padding: 15px;
     margin-bottom: 20px; /* espace entre les posts */
     box-shadow: -2px 2px 4px rgba(0,0,0,0.1); 
+    width: 85%;
 }
 
 #topic{
@@ -652,13 +653,13 @@ input[type="password"]{
 .topic h3 {
     margin: 0;
 }
-.middle-topic {
+/* .middle-topic {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
+} */
 
-.middle-topic ul {
+.middle-topic {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -676,11 +677,26 @@ input[type="password"]{
 
 /* FORUM POST
  */
+
+.post-topic {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+}
+
+.post-topic p {
+    display: flex;
+    align-items: center;
+}
+
 .middle-post {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    width: 50%;
 }
 
 .post {
@@ -736,6 +752,11 @@ input[type="password"]{
 .middle-section {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    /* list-style-type: none; */
+    width: 85%;
+    padding: 0%;
 }
 
 .middle-section h3{
@@ -746,6 +767,7 @@ input[type="password"]{
     text-decoration: none;
     color: black;
 }
+
 
 /* Style pour la pagination- */
 
@@ -1144,8 +1166,8 @@ input[type="password"]{
 @media screen and (min-width: 1250px) {
     body{
         box-sizing: border-box;
-        padding-left: 200px;
-        padding-right: 200px;
+        padding-left: 100px;
+        padding-right: 100px;
     }
 
     .nav {
