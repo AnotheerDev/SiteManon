@@ -13,23 +13,26 @@
     {% include "_partials/_thematique.html.twig" %}
 
     <section class="middle-topic">
-        <ul>
+        {# <ul> #}
             {% for topic in pagination.items %}
-                <li class="topic-item" data-id="{{ topic.id }}">
-                    <div class="topic"> 
+                <div class="topic-item topic" data-id="{{ topic.id }}">
+                    {# <div class="topic">  #}
                         <a href="{{ path('app_posts', {'topicId': topic.id}) }}" class="topic-link">
                             <h3><strong>{{ topic.name }}</strong></h3>
-                        </a> 
-                        <p>- Créé le {{ topic.dateCreation|date('d-m-Y') }}, par {{ topic.user|username_or_deleted }}</p>
+                        </a>
+                        <div class="post-topic">
+                            <p><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg> {{ topic.getPostCount() }} posts</p>
+                            <p>- Créé le {{ topic.dateCreation|date('d-m-Y') }}, par {{ topic.user|username_or_deleted }}</p>
+                        </div>
                         {% if topic.locked %}
                             (Verrouillé)
                         {% endif %}
+                    {# </div> #}
                     </div>
-                </li>
             {% else %}
-                <li>Aucun topic trouvé pour cette catégorie.</li>
+                <div>Aucun topic trouvé pour cette catégorie.</div>
             {% endfor %}
-        </ul>
+        {# </ul> #}
     
         {# Affichage de la pagination #}
         <div class="pagination">
