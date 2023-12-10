@@ -37,28 +37,33 @@
     </section>
 
     <section class="middle-section">
-        <div>
+
             <h3>Les topics les plus vus :</h3>
             {% for topic in mostClickedTopics %}
-            <div class="topic">
+            <div class="topic-item topic">
                 <a href="{{ path('app_posts', {'topicId': topic.id}) }}" class="topic-link">
                     <h3><strong>{{ topic.name }}</strong></h3>
                 </a>
-                <p>- Créé le {{ topic.dateCreation|date('d-m-Y') }}, par {{ topic.user|username_or_deleted }}</p>
+                <div class="post-topic">
+                    <p><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg> {{ topic.getPostCount() }} posts</p>
+                    <p>- Créé le {{ topic.dateCreation|date('d-m-Y') }}, par {{ topic.user|username_or_deleted }}</p>
+                </div>
             </div>
             {% endfor %}
-        </div>
-        <div>
+
             <h3>Les derniers topics créés :</h3>
             {% for topic in topics %}
-            <div class="topic">
+            <div class="topic-item topic">
                 <a href="{{ path('app_posts', {'topicId': topic.id}) }}" class="topic-link">
                     <h3><strong>{{ topic.name }}</strong></h3>
                 </a>
-                <p>- Créé le {{ topic.dateCreation|date('d-m-Y') }}, par {{ topic.user|username_or_deleted }}</p>
+                <div class="post-topic">
+                    <p><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg> {{ topic.getPostCount() }} posts</p>
+                    <p>- Créé le {{ topic.dateCreation|date('d-m-Y') }}, par {{ topic.user|username_or_deleted }}</p>
+                </div>
             </div>
             {% endfor %}
-        </div>
+
     </section>
 
     <section class="rules-section">
