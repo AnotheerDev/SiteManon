@@ -508,9 +508,9 @@ p {
 }
 
 /* Style pour les messages d'erreur */
-[role="alert"] {
-    color: red;
-    margin-bottom: 10px;
+.alert{
+    color: rgb(53, 203, 42);
+    font-family: var(--font-text);
 }
 
 /* Style pour les éléments du formulaire */
