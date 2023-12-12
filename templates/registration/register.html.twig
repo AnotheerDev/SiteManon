@@ -11,6 +11,14 @@
     {% for flash_error in app.flashes('verify_email_error') %}
         <div role="alert">{{ flash_error }}</div>
     {% endfor %}
+    
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger">{{ message }}</div>
+    {% endfor %}
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-danger">{{ message }}</div>
+    {% endfor %}
 
     <section class="log">
         <div class="centre">

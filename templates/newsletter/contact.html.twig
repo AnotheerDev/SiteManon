@@ -7,6 +7,15 @@
 {% block title %}Contact{% endblock %}
 
 {% block body %}
+
+{% for message in app.flashes('error') %}
+<div class="alert alert-danger">{{ message }}</div>
+{% endfor %}
+
+{% for message in app.flashes('success') %}
+<div class="alert alert-danger">{{ message }}</div>
+{% endfor %}
+
     <section class="log-contact">
         <div class="centre centre2">
             <h1>Contact</h1>
