@@ -497,6 +497,8 @@ p {
     flex-direction: row;
     align-items: center;
     height: 65vh;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 
 .log-contact {
