@@ -203,12 +203,15 @@ class CartController extends AbstractController
             $stripe_sk = $this->getParameter('stripe_sk');
             \Stripe\Stripe::setApiKey($stripe_sk);
             
+            $token = bin2hex(random_bytes(32));
+            $session= $request->getSession();
+            $session->set('token', [$commande->getId() => $token]);
 
             $checkout_session = \Stripe\Checkout\Session::create([
                 'payment_method_types' => ['card'],
                 'line_items' => $lineItems,
                 'mode' => 'payment',
-                'success_url' => $this->generateUrl('checkout_success', ['id' => $commande->getId()], UrlGeneratorInterface::ABSOLUTE_URL),
+                'success_url' => $this->generateUrl('checkout_success', ['token' => $token, 'id' => $commande->getId()], UrlGeneratorInterface::ABSOLUTE_URL),
                 'cancel_url' => $this->generateUrl('checkout_cancel', [], UrlGeneratorInterface::ABSOLUTE_URL),
             ]);
             
@@ -225,8 +228,13 @@ class CartController extends AbstractController
 
 
 
-    #[Route('/checkout/success/{id}', name: 'checkout_success')]
-    public function checkoutSuccess($id, EntityManagerInterface $entityManager, MailerInterface $mailer): Response {
+    #[Route('/checkout/success/{token}/{id}', name: 'checkout_success')]
+    public function checkoutSuccess($id, EntityManagerInterface $entityManager, MailerInterface $mailer, $token, Request $request): Response {
+
+        $session= $request->getSession();
+        if ([$id => $token] !== $session->get('token')) {
+            throw $this->createNotFoundException('Token invalide.');
+        }
         // Récupérer la commande à partir de l'ID
         $commande = $entityManager->getRepository(Commande::class)->find($id);
     
