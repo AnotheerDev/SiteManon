@@ -8,8 +8,8 @@
 
 {% block body %}
 
+<h1>Profil de {{ user.nickname }}</h1>
 <div class="user-profile">
-    <h1>Profil de {{ user.nickname }}</h1>
     <p>Email: {{ user.email }}</p>
 
     <a href="{{ path('app_edit_profile') }}">Modifier le Profil</a>
