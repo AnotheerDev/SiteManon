@@ -44,9 +44,9 @@
         <h2>{{ topicName }}</h2>
         {% for post in pagination %} 
         <div class="post">
-            <p>{{ post.user|username_or_deleted }}:</p>
+            <strong>{{ post.user|username_or_deleted }}:</strong>
             <p>{{ post.content|raw }}</p>
-            <p> Posté le {{ post.dateCreation|date('d-m-Y') }}</p>
+            <span> Posté le {{ post.dateCreation|date('d-m-Y') }}</span>
         </div>
         {% else %}
         <p>Aucun post trouvé pour ce topic.</p>
