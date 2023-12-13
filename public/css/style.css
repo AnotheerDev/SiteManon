@@ -469,6 +469,14 @@ p {
     line-height: 1.4;
 }
 
+.pagination-article {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    font-size: larger;
+}
+
 /* tout ce qui concerne les form */
 /* Style pour le conteneur du formulaire */
 .centre {
@@ -476,7 +484,7 @@ p {
     flex-direction: column;
     align-items: center;
     max-width: 400px;
-    margin: 50px auto;
+    margin: 50px;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -490,7 +498,6 @@ p {
 
 #illuContact{
     height: 450px;
-    min-width: 600px;
 }
 
 .log{
@@ -506,6 +513,8 @@ p {
     display: flex;
     flex-direction: row;
     align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 /* Style pour les messages d'erreur */
@@ -703,16 +712,28 @@ input[type="password"]{
 }
 
 .post {
+    display: flex;
+    flex-direction: column;
     border: 1px solid #ccc;
     border-radius: 4px;
     padding: 15px;
     margin-bottom: 20px; /* espace entre les posts */
     box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* ombre légère */   
     width: 100%;
+    gap: 10px;
 }
 
 .post p {
     margin: 0;
+}
+
+.post strong {
+    color: #0079d3;
+    font-size: 1.1em;
+}
+
+.post span {
+    font-size: small;
 }
 
 .post-form {
@@ -930,6 +951,14 @@ input[type="password"]{
 
 .container {
     min-height: 65vh;
+}
+
+.user-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    gap: 10px;
 }
 
 .order-details table {
@@ -1166,6 +1195,7 @@ input[type="password"]{
     font-size: 0.75rem;
     }
 }
+
 
 
 /* For large devices */
