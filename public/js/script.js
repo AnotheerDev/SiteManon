@@ -134,10 +134,10 @@ function onSubmitContact(token) {
 
 //  Suppression des notifications d'alerte
 document.addEventListener('DOMContentLoaded', function () {
-    var alerts = document.querySelectorAll(".alert");
+    var alerts = document.querySelectorAll(".alert, .alert-danger");
     alerts.forEach(function(alert) {
         setTimeout(function() {
             alert.remove(); // Supprime l'élément du DOM
-        }, 5000);
+        }, 2000);
     });
 });
