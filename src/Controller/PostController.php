@@ -85,4 +85,38 @@ class PostController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    #[Route('/post/edit/{id}', name: 'app_post_edit')]
+    public function editPost(Request $request, EntityManagerInterface $entityManager, Post $post): Response {
+        if ($this->getUser() !== $post->getUser() && !$this->isGranted('ROLE_ADMIN')) {
+            throw $this->createAccessDeniedException('Vous n\'êtes pas autorisé à modifier ce post.');
+        }
+
+        $form = $this->createForm(PostType::class, $post);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+            $this->addFlash('success', 'Le post a été modifié avec succès.');
+            return $this->redirectToRoute('app_posts', ['topicId' => $post->getTopicPost()->getId()]);
+        }
+
+        return $this->render('post/edit.html.twig', [
+            'form' => $form->createView(),
+            'post' => $post,
+        ]);
+    }
+
+    #[Route('/post/delete/{id}', name: 'app_post_delete')]
+    public function deletePost(EntityManagerInterface $entityManager, Post $post): Response {
+        if ($this->getUser() !== $post->getUser() && !$this->isGranted('ROLE_ADMIN')) {
+            throw $this->createAccessDeniedException('Vous n\'êtes pas autorisé à modifier ce post.');
+        }
+
+        $entityManager->remove($post);
+        $entityManager->flush();
+        $this->addFlash('success', 'Le post a été supprimé.');
+
+        return $this->redirectToRoute('app_posts', ['topicId' => $post->getTopicPost()->getId()]);
+    }
 }
