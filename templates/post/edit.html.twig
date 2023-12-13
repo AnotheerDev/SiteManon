@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+{% block meta_description %}
+<meta name="description"  content="On this page you can modify the post related to the topic">
+{% endblock %}
+{% block javascripts %}
+<script src="https://cdn.tiny.cloud/1/wf9m32hoge9fgzzk0h8hap6mwf2v3fiz60uexkh7eh1jqe8t/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        tinymce.init({
+            selector: 'textarea.mce', //sélecteur correspond à textarea
+            language: 'fr_FR',
+            setup: function (editor) {
+                editor.on('change', function () {
+                    editor.save(); // Synchronise le contenu de TinyMCE avec le textarea à chaque changement
+                });
+            }
+        });
+
+        var form = document.querySelector('.post-form');
+        form.addEventListener('submit', function(e) {
+            tinymce.triggerSave(); // Synchronise le contenu de TinyMCE avec le textarea avant la soumission
+        });
+    });
+</script>
+
+{% endblock %}
+
+{% block title %}Modifier le Post{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Modifier le Post</h1>
+    
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button type="submit" class="btn-blue">Sauvegarder les changements</button>
+    {{ form_end(form) }}
+</div>
+{% endblock %}
