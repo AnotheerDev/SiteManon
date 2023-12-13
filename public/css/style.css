@@ -242,6 +242,7 @@ p {
 .carousel img {
     width: 100%;
     height: auto;
+    object-fit: cover;
 }
 
 .carousel-buttons {
@@ -1004,7 +1005,7 @@ input[type="password"]{
 
     #sectionCarousel{
         flex-direction: column;
-        margin-top: 70px;
+        padding-top: 23%;
     }
     .article{
         display:flex;
@@ -1044,6 +1045,7 @@ input[type="password"]{
     #sectionAbout{
         flex-wrap: nowrap;
         align-items: center;
+        padding-top: 0%;
     }
 
     /* #sectionCarousel{
@@ -1100,6 +1102,12 @@ input[type="password"]{
     #sectionCarousel{
         flex-direction: column;
     }
+
+    /* .carousel img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    } */
 
     .thematiques{
         display: flex;
@@ -1162,6 +1170,10 @@ input[type="password"]{
 
 /* For large devices */
 @media screen and (min-width: 1024px) {
+
+    #sectionCarousel{
+        padding-top: 0%;
+    }
 
 }
 
