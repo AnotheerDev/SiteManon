@@ -36,8 +36,8 @@ class NewsletterController extends AbstractController
         if ($form->isSubmitted() && $form->isValid() && $form->get('middleName')->getData() === null) {
             // Créer et envoyer l'e-mail
             $email = (new Email())
-                ->from('votre@adresse.email') //  votre adresse e-mail
-                ->to('destinataire@adresse.email') // l'adresse e-mail du destinataire
+                ->from($contactRequest->getEmail()) //  adresse mail du formulaire
+                ->to('adresseManon@adresse.email') // l'adresse e-mail de réception
                 ->subject('Nouvelle demande de contact')
                 ->text("Nom: {$contactRequest->getLastName()}\nPrénom: {$contactRequest->getFirstName()}\nEmail: {$contactRequest->getEmail()}\nSujet: {$contactRequest->getSubject()}\nMessage: {$contactRequest->getMessage()}");
             
