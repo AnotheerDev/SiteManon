@@ -24,7 +24,7 @@ class ExceptionListener
         // Gère uniquement les exceptions NotFoundHttpException
         if ($exception instanceof NotFoundHttpException) {
             $response = new Response();
-            $response->setContent($this->twig->render('bundles/TwigBundle/Exception/error404.html.twig'));
+            $response->setContent($this->twig->render('bundles/TwigBundle/Exception/404.html.twig'));
             $response->setStatusCode(Response::HTTP_NOT_FOUND);
 
             $event->setResponse($response);
